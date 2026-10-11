@@ -361,6 +361,33 @@ th { font-weight: 500; color: var(--ink-2); font-size: .8rem; }
   .tabs { gap: 16px; }
 }
 
+/* ---------- מסך כניסה עם לוגו המכללה ---------- */
+.gate-box { text-align: center; }
+.gate-box h1 { text-wrap: balance; }
+.gate-logo {
+  display: block; width: 160px; height: 160px; margin: 0 auto 20px;
+  border-radius: 50%; background: #FFFFFF; object-fit: contain;
+}
+.gate-note {
+  font-size: .9rem; color: var(--ink-2);
+  margin-top: 20px !important; padding-top: 16px; border-top: 1px solid var(--line);
+}
+.count-badge {
+  display: inline-grid; place-items: center; min-width: 18px; height: 18px; padding: 0 5px;
+  margin-inline-start: 6px; border-radius: 9px; background: var(--accent); color: var(--on-accent);
+  font-size: .7rem; font-weight: 600;
+}
+select:disabled { opacity: .6; }
+.group-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-block: 8px 2px; }
+.group-tag {
+  font-size: .8rem; color: var(--accent); background: var(--mist);
+  padding: 2px 10px; border-radius: 99px; white-space: nowrap;
+}
+.checks { display: flex; flex-direction: column; gap: 6px; max-height: 220px; overflow: auto; padding: 4px 0; }
+.check { display: inline-flex; align-items: center; gap: 8px; font-size: .95rem; cursor: pointer; }
+.check input { width: 16px; height: 16px; accent-color: var(--accent); }
+input[type="file"] { font-size: .9rem; max-width: 100%; }
+
 </style>
 <script>
 try {
@@ -384,7 +411,7 @@ var __export = (target, all) => {
     __defProp(target, name, { get: all[name], enumerable: true });
 };
 
-// ../../../../../../home/claude/nlp-coach/js/backend-firebase.js
+// ../../../../../home/claude/nlp-coach/js/backend-firebase.js
 var backend_firebase_exports = {};
 __export(backend_firebase_exports, {
   createFirebaseBackend: () => createFirebaseBackend
@@ -441,12 +468,13 @@ async function createFirebaseBackend(config, ownerEmail = "") {
       await A.signOut(auth);
     },
     async getAccess(u) {
-      if (ownerEmail && u.email === ownerEmail.toLowerCase()) return { role: "admin" };
+      const isOwner = ownerEmail && u.email === ownerEmail.toLowerCase();
       try {
         const snap = await getDoc(doc(db, "allowedEmails", u.email));
-        return snap.exists() ? { role: snap.data().role || "student" } : null;
+        if (snap.exists()) return { ...snap.data(), role: isOwner ? "admin" : snap.data().role || "student" };
+        return isOwner ? { role: "admin" } : null;
       } catch (e) {
-        return null;
+        return isOwner ? { role: "admin" } : null;
       }
     },
     async hasRequested(u) {
@@ -509,12 +537,29 @@ async function createFirebaseBackend(config, ownerEmail = "") {
       snap.forEach((d) => out.push({ email: d.id, ...d.data() }));
       return out.sort((a, b) => a.email.localeCompare(b.email));
     },
-    async addAllowed(emails, role) {
+    // entries: [{ email, name, role, groupIds }]
+    async addAllowed(entries) {
+      for (let i = 0; i < entries.length; i += 400) await this._addBatch(entries.slice(i, i + 400));
+    },
+    async _addBatch(entries) {
       const batch = writeBatch(db);
-      emails.forEach((email) => {
-        batch.set(doc(db, "allowedEmails", email), { role, addedAt: Date.now(), addedBy: auth.currentUser?.email || "" }, { merge: true });
+      entries.forEach(({ email, name, role = "student", groupIds = [] }) => {
+        const data = { role, groupIds, groupId: "", addedAt: Date.now(), addedBy: auth.currentUser?.email || "" };
+        if (name) data.name = name;
+        batch.set(doc(db, "allowedEmails", email), data, { merge: true });
       });
       await batch.commit();
+    },
+    async updateAllowed(email, fields) {
+      await setDoc(doc(db, "allowedEmails", email), fields, { merge: true });
+    },
+    // קבוצות התלמידים נשמרות במסמך אחד באוסף content (מנהל כותב, מורשים קוראים)
+    async listGroups() {
+      const snap = await getDoc(doc(db, "content", "groups"));
+      return snap.exists() ? snap.data().list || [] : [];
+    },
+    async saveGroups(groups) {
+      await setDoc(doc(db, "content", "groups"), { list: groups });
     },
     async removeAllowed(email) {
       await deleteDoc(doc(db, "allowedEmails", email));
@@ -525,9 +570,9 @@ async function createFirebaseBackend(config, ownerEmail = "") {
       snap.forEach((d) => out.push({ uid: d.id, ...d.data() }));
       return out.sort((a, b) => b.requestedAt - a.requestedAt);
     },
-    async approveRequest(req) {
+    async approveRequest(req, { name = "", groupIds = [], role = "student" } = {}) {
       const batch = writeBatch(db);
-      batch.set(doc(db, "allowedEmails", req.email), { role: "student", addedAt: Date.now(), addedBy: auth.currentUser?.email || "" });
+      batch.set(doc(db, "allowedEmails", req.email), { role, groupIds, name: name || req.name || "", addedAt: Date.now(), addedBy: auth.currentUser?.email || "" });
       batch.delete(doc(db, "accessRequests", req.uid));
       await batch.commit();
     },
@@ -550,13 +595,13 @@ async function createFirebaseBackend(config, ownerEmail = "") {
 }
 var V, BASE;
 var init_backend_firebase = __esm({
-  "../../../../../../home/claude/nlp-coach/js/backend-firebase.js"() {
+  "../../../../../home/claude/nlp-coach/js/backend-firebase.js"() {
     V = "10.12.2";
     BASE = `https://www.gstatic.com/firebasejs/${V}`;
   }
 });
 
-// ../../../../../../home/claude/nlp-coach/js/config.js
+// ../../../../../home/claude/nlp-coach/js/config.js
 // ===== פרטי החיבור ל-Firebase =====
 var firebaseConfig = {
   apiKey: "AIzaSyBwc-dLQGn1pTRfEQFo6ddeSDG9tG2JCOU",
@@ -569,7 +614,7 @@ var firebaseConfig = {
 var OWNER_EMAIL = "arye.minkov@gmail.com";
 var APP_NAME = "מלווה NLP";
 
-// ../../../../../../home/claude/nlp-coach/js/default-content.js
+// ../../../../../home/claude/nlp-coach/js/default-content.js
 var DEFAULT_CONTENT = {
   version: 1,
   learningTopics: [
@@ -696,14 +741,15 @@ var GUIDANCE_LABELS = {
   watchFor: "למה לשים לב"
 };
 
-// ../../../../../../home/claude/nlp-coach/js/backend-local.js
+// ../../../../../home/claude/nlp-coach/js/backend-local.js
 var K = {
   state: "nlp.demo.state",
   notes: "nlp.demo.notes",
   journal: "nlp.demo.journal",
   allowed: "nlp.demo.allowed",
   requests: "nlp.demo.requests",
-  content: "nlp.demo.content"
+  content: "nlp.demo.content",
+  groups: "nlp.demo.groups"
 };
 var DEMO_USER = {
   uid: "demo",
@@ -729,7 +775,7 @@ function write(key, value) {
 function seed() {
   if (!read(K.allowed, null)) {
     write(K.allowed, [
-      { email: DEMO_USER.email, role: "admin", addedAt: Date.now(), note: "חשבון ההדגמה" }
+      { email: DEMO_USER.email, name: DEMO_USER.name, role: "admin", groupIds: [], addedAt: Date.now() }
     ]);
   }
   if (!read(K.requests, null)) {
@@ -762,7 +808,7 @@ function createLocalBackend() {
     },
     async getAccess(u) {
       const found = read(K.allowed, []).find((a) => a.email === u.email.toLowerCase());
-      return found ? { role: found.role } : null;
+      return found ? { ...found } : null;
     },
     async hasRequested(u) {
       return read(K.requests, []).some((r) => r.uid === u.uid);
@@ -808,14 +854,29 @@ function createLocalBackend() {
     async listAllowed() {
       return read(K.allowed, []).sort((a, b) => a.email.localeCompare(b.email));
     },
-    async addAllowed(emails, role) {
+    // entries: [{ email, name, role, groupIds }]
+    async addAllowed(entries) {
       const list = read(K.allowed, []);
-      emails.forEach((email) => {
+      entries.forEach(({ email, name, role = "student", groupIds = [] }) => {
         const existing = list.find((a) => a.email === email);
-        if (existing) existing.role = role;
-        else list.push({ email, role, addedAt: Date.now(), note: "" });
+        if (existing) {
+          Object.assign(existing, { role, groupIds, ...name ? { name } : {} });
+          delete existing.groupId;
+        } else list.push({ email, name: name || "", role, groupIds, addedAt: Date.now() });
       });
       write(K.allowed, list);
+    },
+    async updateAllowed(email, fields) {
+      const list = read(K.allowed, []);
+      const a = list.find((x) => x.email === email);
+      if (a) Object.assign(a, fields);
+      write(K.allowed, list);
+    },
+    async listGroups() {
+      return read(K.groups, []);
+    },
+    async saveGroups(groups) {
+      write(K.groups, groups);
     },
     async removeAllowed(email) {
       write(K.allowed, read(K.allowed, []).filter((a) => a.email !== email));
@@ -823,8 +884,8 @@ function createLocalBackend() {
     async listRequests() {
       return read(K.requests, []).sort((a, b) => b.requestedAt - a.requestedAt);
     },
-    async approveRequest(req) {
-      await this.addAllowed([req.email], "student");
+    async approveRequest(req, { name = "", groupIds = [], role = "student" } = {}) {
+      await this.addAllowed([{ email: req.email, name: name || req.name || "", role, groupIds }]);
       await this.rejectRequest(req.uid);
     },
     async rejectRequest(uid) {
@@ -843,7 +904,7 @@ function createLocalBackend() {
   };
 }
 
-// ../../../../../../home/claude/nlp-coach/js/dom.js
+// ../../../../../home/claude/nlp-coach/js/dom.js
 function h(tag, attrs, ...children) {
   const el = document.createElement(tag);
   if (attrs) {
@@ -883,6 +944,8 @@ var ICONS = {
   check: ["M5 12l5 5l10 -10"],
   plus: ["M12 5v14", "M5 12h14"],
   up: ["M6 15l6 -6l6 6"],
+  download: ["M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2 -2v-2", "M7 11l5 5l5 -5", "M12 4v12"],
+  upload: ["M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2 -2v-2", "M7 9l5 -5l5 5", "M12 4v12"],
   down: ["M6 9l6 6l6 -6"]
 };
 function icon(name, { size = 20, filled = false } = {}) {
@@ -1006,7 +1069,7 @@ function initials(name) {
   return (parts[0][0] + (parts[1] ? parts[1][0] : "")).toUpperCase();
 }
 
-// ../../../../../../home/claude/nlp-coach/js/store.js
+// ../../../../../home/claude/nlp-coach/js/store.js
 var DAY = 864e5;
 var INTERVALS = [1, 3, 7, 16, 35];
 function defaultState(user) {
@@ -1135,7 +1198,7 @@ function applyPrefs(prefs) {
   }
 }
 
-// ../../../../../../home/claude/nlp-coach/js/search.js
+// ../../../../../home/claude/nlp-coach/js/search.js
 var FINALS = { "ך": "כ", "ם": "מ", "ן": "נ", "ף": "פ", "ץ": "צ" };
 var DROP = /[֑-ׇ'"׳״\-–—,.?!:;()/\\[\]]/;
 function normalizeWithMap(str, skeleton) {
@@ -1223,7 +1286,7 @@ function highlight(text, ranges) {
   return out;
 }
 
-// ../../../../../../home/claude/nlp-coach/js/views.js
+// ../../../../../home/claude/nlp-coach/js/views.js
 function pageHead(title, meta) {
   return h("div", { class: "page-head" }, h("h1", null, title), meta ? h("span", { class: "meta" }, meta) : null);
 }
@@ -1241,8 +1304,15 @@ function bar(value, total) {
 function empty(message, actionLabel, href) {
   return h("div", { class: "empty" }, h("p", null, message), actionLabel ? h("a", { class: "btn", href }, actionLabel) : null);
 }
+function displayName(ctx2) {
+  return ctx2.access?.name || ctx2.state.profile.name || "";
+}
 function firstName(ctx2) {
-  return (ctx2.state.profile.name || "").split(" ")[0];
+  return displayName(ctx2).split(" ")[0];
+}
+function groupTags(ctx2) {
+  if (!ctx2.myGroups?.length) return null;
+  return h("div", { class: "group-tags", "aria-label": "הקבוצות שלך" }, ctx2.myGroups.map((n) => h("span", { class: "group-tag" }, n)));
 }
 function noteBox(ctx2, key, label) {
   const existing = ctx2.notes[key]?.text || "";
@@ -1415,6 +1485,7 @@ async function home(page, ctx2) {
   const lead = prog.total ? `ידעת ${prog.known} מתוך ${prog.total} שאלות החזרה. ` + (due ? `${due} מחכות לחזרה.` : "אין כרגע שאלות שמחכות לחזרה.") : "";
   page.append(
     h("h1", null, name ? `שלום, ${name}` : "שלום"),
+    groupTags(ctx2),
     h("p", { class: "lead", style: { marginTop: "8px" } }, lead),
     h(
       "div",
@@ -1936,7 +2007,8 @@ async function me(page, ctx2) {
       h(
         "div",
         { style: { flex: "1", minWidth: "0" } },
-        h("h1", null, p.name || "האזור שלי"),
+        h("h1", null, displayName(ctx2) || "האזור שלי"),
+        groupTags(ctx2),
         h("div", { class: "small muted" }, p.email, ctx2.isAdmin ? h("span", { class: "role", style: { marginInlineStart: "8px" } }, "מנהל/ת") : null),
         h("div", { class: "small muted" }, "הצטרפות: " + formatDate(state.createdAt))
       ),
@@ -2054,38 +2126,246 @@ async function about(page, ctx2) {
 }
 var VIEWS = { home, review, questions, saved, practice, me, about };
 
-// ../../../../../../home/claude/nlp-coach/js/admin.js
+// ../../../../../home/claude/nlp-coach/js/logo.js
+var COLLEGE_LOGO = "data:image/webp;base64,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";
+
+// ../../../../../home/claude/nlp-coach/js/admin.js
 var SUBTABS = [
   ["requests", "בקשות גישה"],
   ["allowed", "מורשים"],
-  ["students", "תלמידים"],
+  ["groups", "קבוצות"],
+  ["students", "התקדמות תלמידים"],
   ["content", "עריכת תוכן"]
 ];
 var EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-function subtabs(active) {
+var NO_GROUP = "__none";
+function subtabs(active, counts = {}) {
   return h(
     "nav",
     { class: "subtabs", "aria-label": "ניהול" },
-    SUBTABS.map(([id, label]) => h("a", { class: "tab", href: "#/admin/" + id, "aria-current": id === active ? "page" : null, style: { height: "40px" } }, label))
+    SUBTABS.map(([id, label]) => h(
+      "a",
+      { class: "tab", href: "#/admin/" + id, "aria-current": id === active ? "page" : null, style: { height: "40px" } },
+      label,
+      counts[id] ? h("span", { class: "count-badge" }, counts[id]) : null
+    ))
   );
 }
 async function admin(page, ctx2) {
-  const sub = ctx2.route.parts[1] || "requests";
+  const sub = ctx2.route.parts[1] || "allowed";
   if (sub === "user") return userDetail(page, ctx2, ctx2.route.parts[2]);
-  page.append(h("h1", { style: { marginBottom: "16px" } }, "ניהול"), subtabs(sub));
+  const pending = await ctx2.backend.listRequests().catch(() => []);
+  page.append(h("h1", { style: { marginBottom: "16px" } }, "ניהול"), subtabs(sub, { requests: pending.length }));
   const body = h("div");
   page.append(body);
-  if (sub === "allowed") return allowed(body, ctx2);
+  if (sub === "requests") return requests(body, ctx2, pending);
+  if (sub === "groups") return groupsView(body, ctx2);
   if (sub === "students") return students(body, ctx2);
   if (sub === "content") return contentEditor(body, ctx2);
-  return requests(body, ctx2);
+  return allowed(body, ctx2);
 }
-async function requests(body, ctx2) {
-  const list = await ctx2.backend.listRequests();
+async function loadGroups(ctx2) {
+  return await ctx2.backend.listGroups().catch(() => []) || [];
+}
+function groupIdsOf(a) {
+  if (Array.isArray(a?.groupIds)) return a.groupIds.filter(Boolean);
+  return a?.groupId ? [a.groupId] : [];
+}
+function groupNames(groups, ids) {
+  const names = ids.map((id) => groups.find((g) => g.id === id)?.name).filter(Boolean);
+  return names.length ? names.join(", ") : "ללא קבוצה";
+}
+function hasNoGroup(groups, ids) {
+  return !ids.some((id) => groups.some((g) => g.id === id));
+}
+function groupPicker(groups, selected = []) {
+  const boxes = groups.map((g) => {
+    const cb = h("input", { type: "checkbox", value: g.id, checked: selected.includes(g.id) });
+    return { cb, el: h("label", { class: "check" }, cb, g.name) };
+  });
+  const el = groups.length ? h("div", { class: "checks" }, boxes.map((b) => b.el)) : h("p", { class: "small muted" }, "אין עדיין קבוצות. אפשר ליצור אותן בלשונית קבוצות.");
+  return { el, value: () => boxes.filter((b) => b.cb.checked).map((b) => b.cb.value) };
+}
+function roleSelect(value) {
+  const sel = h("select", null, h("option", { value: "student" }, "תלמיד/ה"), h("option", { value: "admin" }, "מנהל/ת"));
+  sel.value = value || "student";
+  return sel;
+}
+function field(label, input, hint) {
+  return h("div", { class: "field" }, h("label", null, label), input, hint ? h("span", { class: "hint" }, hint) : null);
+}
+function formButtons(close, onSave, saveLabel = "שמירה") {
+  return h(
+    "div",
+    { class: "btn-row" },
+    h("button", { class: "btn", onclick: close }, "ביטול"),
+    h("button", { class: "btn btn-primary", onclick: onSave }, saveLabel)
+  );
+}
+function errorLine() {
+  return h("p", { class: "small", style: { color: "var(--danger)", minHeight: "1.2em", margin: "0 0 8px" } });
+}
+function groupFilters(groups, items, idsOf, current, onPick) {
+  const inGroup = (x, id) => id === "all" ? true : id === NO_GROUP ? hasNoGroup(groups, idsOf(x)) : idsOf(x).includes(id);
+  const opts = [["all", "הכל"]].concat(groups.map((g) => [g.id, g.name]));
+  if (items.some((x) => inGroup(x, NO_GROUP))) opts.push([NO_GROUP, "ללא קבוצה"]);
+  return {
+    inGroup,
+    buttons: opts.map(([id, label]) => h("button", {
+      class: "filter",
+      "aria-pressed": id === current ? "true" : "false",
+      onclick: () => onPick(id)
+    }, label, " ", h("span", { class: "muted" }, items.filter((x) => inGroup(x, id)).length)))
+  };
+}
+function csvCell(v) {
+  const s = String(v ?? "");
+  return /[",\n\r]/.test(s) ? '"' + s.replace(/"/g, '""') + '"' : s;
+}
+function parseCsv(text) {
+  const rows = [];
+  let row = [], cell = "", q = false;
+  text = text.replace(/^﻿/, "");
+  for (let i = 0; i < text.length; i++) {
+    const c = text[i];
+    if (q) {
+      if (c === '"' && text[i + 1] === '"') {
+        cell += '"';
+        i++;
+      } else if (c === '"') q = false;
+      else cell += c;
+    } else if (c === '"') q = true;
+    else if (c === "," || c === ";" || c === "	") {
+      row.push(cell);
+      cell = "";
+    } else if (c === "\n" || c === "\r") {
+      if (c === "\r" && text[i + 1] === "\n") i++;
+      row.push(cell);
+      rows.push(row);
+      row = [];
+      cell = "";
+    } else cell += c;
+  }
+  if (cell || row.length) {
+    row.push(cell);
+    rows.push(row);
+  }
+  return rows.map((r) => r.map((x) => x.trim())).filter((r) => r.some(Boolean));
+}
+function exportCsv(list, groups) {
+  const lines2 = [["שם", "מייל", "קבוצות", "תפקיד"].join(",")];
+  list.forEach((a) => {
+    const names = groupIdsOf(a).map((id) => groups.find((g) => g.id === id)?.name).filter(Boolean).join("; ");
+    lines2.push([a.name || "", a.email, names, a.role === "admin" ? "מנהל" : "תלמיד"].map(csvCell).join(","));
+  });
+  const blob = new Blob(["\uFEFF" + lines2.join("\r\n")], { type: "text/csv;charset=utf-8" });
+  const url = URL.createObjectURL(blob);
+  const d = /* @__PURE__ */ new Date();
+  const link = h("a", { href: url, download: `מורשים-${d.getFullYear()}-${d.getMonth() + 1}-${d.getDate()}.csv` });
+  document.body.appendChild(link);
+  link.click();
+  link.remove();
+  setTimeout(() => URL.revokeObjectURL(url), 2e3);
+  toast(`יוצאו ${list.length} רשומות`);
+}
+function importDialog(ctx2, list, groups) {
+  const input = h("input", { type: "file", accept: ".csv,text/csv" });
+  const status = h("div");
+  let plan = null;
+  const analyze = async (file) => {
+    const rows = parseCsv(await file.text());
+    if (!rows.length) {
+      status.replaceChildren(h("p", { class: "small", style: { color: "var(--danger)" } }, "הקובץ ריק."));
+      plan = null;
+      return;
+    }
+    const head = rows[0].map((x) => x.toLowerCase());
+    const find = (...keys) => head.findIndex((x) => keys.some((k) => x.includes(k)));
+    let iName = find("שם", "name"), iMail = find("מייל", "mail", "דוא"), iGroups = find("קבוצ", "group", "קטגור"), iRole = find("תפקיד", "role");
+    let data = rows.slice(1);
+    if (iMail === -1) {
+      data = rows;
+      iMail = rows[0].findIndex((x) => EMAIL_RE.test(x));
+      iName = rows[0].findIndex((x, i) => i !== iMail && x);
+    }
+    const entries = [], bad = [], newGroupNames = /* @__PURE__ */ new Set();
+    data.forEach((r, n) => {
+      const email = (r[iMail] || "").toLowerCase();
+      if (!EMAIL_RE.test(email)) {
+        bad.push(n + 1);
+        return;
+      }
+      const gNames = iGroups > -1 ? (r[iGroups] || "").split(/[;|]/).map((x) => x.trim()).filter(Boolean) : [];
+      gNames.forEach((gn) => {
+        if (!groups.some((g) => g.name === gn)) newGroupNames.add(gn);
+      });
+      const roleText = iRole > -1 ? r[iRole] || "" : "";
+      entries.push({ email, name: iName > -1 ? r[iName] || "" : "", gNames, role: /מנהל|admin/i.test(roleText) ? "admin" : "student" });
+    });
+    const existing = entries.filter((e) => list.some((a) => a.email === e.email)).length;
+    plan = { entries, newGroupNames: [...newGroupNames] };
+    status.replaceChildren(
+      h(
+        "ul",
+        { class: "small", style: { margin: "12px 0", paddingInlineStart: "18px", listStyle: "disc" } },
+        h("li", null, `${entries.length - existing} חדשים יתווספו`),
+        existing ? h("li", null, `${existing} קיימים יעודכנו (שם, קבוצות ותפקיד)`) : null,
+        plan.newGroupNames.length ? h("li", null, "קבוצות חדשות שייווצרו: " + plan.newGroupNames.join(", ")) : null,
+        bad.length ? h("li", { style: { color: "var(--danger)" } }, `${bad.length} שורות בלי מייל תקין ידולגו`) : null
+      )
+    );
+  };
+  input.addEventListener("change", () => {
+    if (input.files[0]) analyze(input.files[0]);
+  });
+  modal("ייבוא מורשים מקובץ", (close) => [
+    h("p", { class: "small muted", style: { marginBottom: "12px" } }, "קובץ CSV עם העמודות: שם, מייל, קבוצות, תפקיד. כמה קבוצות לאותו אדם מפרידים בנקודה-פסיק. הדרך הכי פשוטה: לייצא את הרשימה, לערוך באקסל, לשמור כ-CSV ולייבא. הייבוא מוסיף ומעדכן, ולא מוחק אף אחד."),
+    input,
+    status,
+    formButtons(close, async () => {
+      if (!plan || !plan.entries.length) {
+        toast("בחר/י קובץ עם לפחות שורה אחת תקינה");
+        return;
+      }
+      let all = groups.slice();
+      if (plan.newGroupNames.length) {
+        plan.newGroupNames.forEach((name, i) => all.push({ id: "g" + Date.now().toString(36) + i, name }));
+        await ctx2.backend.saveGroups(all);
+      }
+      const entries = plan.entries.map((e) => {
+        const self = e.email === ctx2.user.email;
+        return { email: e.email, name: e.name, role: self ? ctx2.role : e.role, groupIds: e.gNames.map((n) => all.find((g) => g.name === n)?.id).filter(Boolean) };
+      });
+      await ctx2.backend.addAllowed(entries);
+      close();
+      toast(`יובאו ${entries.length} רשומות`);
+      ctx2.rerender();
+    }, "ייבוא")
+  ]);
+}
+async function requests(body, ctx2, list) {
   if (!list.length) {
     body.append(h("div", { class: "empty" }, h("p", null, "אין בקשות גישה ממתינות. כשמישהו יתחבר עם מייל שלא ברשימה וישלח בקשה, היא תופיע כאן.")));
     return;
   }
+  const groups = await loadGroups(ctx2);
+  const approve = (r) => modal("אישור גישה", (close) => {
+    const name = h("input", { type: "text", value: r.name || "" });
+    const picker = groupPicker(groups, []);
+    const role = roleSelect("student");
+    return [
+      h("p", { class: "small muted", style: { marginBottom: "14px" } }, r.email),
+      field("שם", name),
+      field("קבוצות", picker.el),
+      field("תפקיד", role),
+      formButtons(close, async () => {
+        await ctx2.backend.approveRequest(r, { name: name.value.trim(), groupIds: picker.value(), role: role.value });
+        close();
+        toast("הגישה אושרה");
+        ctx2.rerender();
+      }, "אישור")
+    ];
+  });
   body.append(h("ul", { class: "list" }, list.map((r) => h("li", null, h(
     "div",
     { class: "row", style: { alignItems: "center" } },
@@ -2098,11 +2378,7 @@ async function requests(body, ctx2) {
     h(
       "div",
       { class: "btn-row" },
-      h("button", { class: "btn btn-primary", onclick: async () => {
-        await ctx2.backend.approveRequest(r);
-        toast("אושר");
-        ctx2.rerender();
-      } }, "אישור"),
+      h("button", { class: "btn btn-primary", onclick: () => approve(r) }, "אישור"),
       h("button", { class: "btn", onclick: async () => {
         await ctx2.backend.rejectRequest(r.uid);
         toast("הבקשה נדחתה");
@@ -2112,90 +2388,272 @@ async function requests(body, ctx2) {
   )))));
 }
 async function allowed(body, ctx2) {
-  const list = await ctx2.backend.listAllowed();
-  const ta = h("textarea", { "aria-label": "כתובות מייל להוספה", placeholder: "כתובת אחת בכל שורה, או מופרדות בפסיק" });
-  const role = h("select", { "aria-label": "תפקיד" }, h("option", { value: "student" }, "תלמיד/ה"), h("option", { value: "admin" }, "מנהל/ת"));
-  const error = h("p", { class: "small", style: { color: "var(--danger)" } });
-  const add = async () => {
-    const emails = ta.value.split(/[\s,;]+/).map((e) => e.trim().toLowerCase()).filter(Boolean);
-    const bad = emails.filter((e) => !EMAIL_RE.test(e));
-    if (!emails.length) {
-      error.textContent = "הוסף/י לפחות כתובת אחת.";
-      return;
-    }
-    if (bad.length) {
-      error.textContent = "כתובות לא תקינות: " + bad.join(", ");
-      return;
-    }
-    await ctx2.backend.addAllowed([...new Set(emails)], role.value);
-    toast(emails.length === 1 ? "הכתובת נוספה" : `${emails.length} כתובות נוספו`);
+  const [list, groups] = await Promise.all([ctx2.backend.listAllowed(), loadGroups(ctx2)]);
+  let filter = ctx2.route.params.group || "all";
+  if (filter !== "all" && filter !== NO_GROUP && !groups.some((g) => g.id === filter)) filter = "all";
+  let term = "";
+  const openAdd = () => modal("הוספת מורשים", (close) => {
+    const ta = h("textarea", { placeholder: "ישראל ישראלי, israel@gmail.com\nשרה כהן, sara@gmail.com", style: { minHeight: "120px" } });
+    const picker = groupPicker(groups, filter !== "all" && filter !== NO_GROUP ? [filter] : []);
+    const role = roleSelect("student");
+    const err = errorLine();
+    ta.addEventListener("input", () => {
+      err.textContent = "";
+    });
+    return [
+      field("שם ומייל", ta, "שורה לכל אדם: שם, פסיק, מייל. אפשר גם מייל בלבד ולהוסיף את השם אחר כך."),
+      field("קבוצות", picker.el, "אפשר לסמן יותר מקבוצה אחת."),
+      field("תפקיד", role),
+      err,
+      formButtons(close, async () => {
+        const entries = [], bad = [];
+        ta.value.split("\n").map((l) => l.trim()).filter(Boolean).forEach((line) => {
+          const parts = line.split(/[,;\t]+/).map((x) => x.trim()).filter(Boolean);
+          const email = (parts.find((x) => EMAIL_RE.test(x)) || "").toLowerCase();
+          if (!email) {
+            bad.push(line);
+            return;
+          }
+          entries.push({ email, name: parts.filter((x) => !EMAIL_RE.test(x)).join(" "), role: role.value, groupIds: picker.value() });
+        });
+        if (!entries.length && !bad.length) {
+          err.textContent = "הוסף/י לפחות שורה אחת.";
+          return;
+        }
+        if (bad.length) {
+          err.textContent = "לא נמצא מייל תקין בשורות: " + bad.join(" | ");
+          return;
+        }
+        await ctx2.backend.addAllowed(entries);
+        close();
+        toast(entries.length === 1 ? "נוסף/ה לרשימה" : `${entries.length} נוספו לרשימה`);
+        ctx2.rerender();
+      }, "הוספה")
+    ];
+  });
+  const openEdit = (a) => modal("עריכת פרטים", (close) => {
+    const name = h("input", { type: "text", value: a.name || "" });
+    const picker = groupPicker(groups, groupIdsOf(a));
+    const role = roleSelect(a.role);
+    const self = a.email === ctx2.user.email;
+    if (self) role.disabled = true;
+    return [
+      h("p", { class: "small muted", style: { marginBottom: "14px" } }, a.email),
+      field("שם", name),
+      field("קבוצות", picker.el),
+      field("תפקיד", role, self ? "אי אפשר לשנות את התפקיד של עצמך." : null),
+      formButtons(close, async () => {
+        await ctx2.backend.updateAllowed(a.email, { name: name.value.trim(), groupIds: picker.value(), role: self ? a.role : role.value });
+        close();
+        toast("נשמר");
+        ctx2.rerender();
+      })
+    ];
+  });
+  const remove = async (a) => {
+    if (!await confirmDialog("הסרת גישה", `${a.name || a.email} לא יוכל/תוכל להיכנס לאתר מהכניסה הבאה. ההתקדמות וההערות יישמרו.`, "הסרה", { danger: true })) return;
+    await ctx2.backend.removeAllowed(a.email);
+    toast("הוסר/ה מהרשימה");
     ctx2.rerender();
   };
-  ta.addEventListener("input", () => {
-    error.textContent = "";
+  const filters = h("div", { class: "filters", role: "group", "aria-label": "סינון לפי קבוצה" });
+  const search = h("input", { type: "search", placeholder: "חיפוש לפי שם או מייל", "aria-label": "חיפוש מורשים" });
+  const meta = h("span", { class: "meta" });
+  const tbody = h("tbody");
+  let inGroup = () => true;
+  const drawFilters = () => {
+    const f = groupFilters(groups, list, groupIdsOf, filter, (id) => {
+      filter = id;
+      ctx2.replaceRoute("admin/allowed" + (id === "all" ? "" : "?group=" + encodeURIComponent(id)));
+      drawFilters();
+      drawRows();
+    });
+    inGroup = f.inGroup;
+    filters.replaceChildren(...f.buttons);
+  };
+  const visible = () => {
+    const t = term.trim().toLowerCase();
+    return list.filter((a) => inGroup(a, filter) && (!t || a.email.includes(t) || (a.name || "").toLowerCase().includes(t))).sort((x, y) => (x.name || x.email).localeCompare(y.name || y.email, "he"));
+  };
+  const drawRows = () => {
+    const rows = visible();
+    meta.textContent = `${rows.length} מורשים`;
+    if (!rows.length) {
+      tbody.replaceChildren(h("tr", null, h("td", { colspan: "4", class: "muted", style: { textAlign: "center", padding: "28px" } }, list.length ? "אין מורשים שמתאימים לסינון." : "הרשימה ריקה. לחץ/י על הוספת מורשים.")));
+      return;
+    }
+    tbody.replaceChildren(...rows.map((a) => h(
+      "tr",
+      null,
+      h("td", null, h("div", null, a.name || h("span", { class: "muted" }, "ללא שם")), h("div", { class: "small muted" }, a.email)),
+      h("td", null, groupNames(groups, groupIdsOf(a))),
+      h("td", null, a.role === "admin" ? h("span", { class: "role" }, "מנהל/ת") : "תלמיד/ה"),
+      h("td", null, h(
+        "div",
+        { style: { display: "flex", gap: "2px", justifyContent: "flex-end" } },
+        h("button", { class: "icon-btn", "aria-label": "עריכת " + (a.name || a.email), title: "עריכה", onclick: () => openEdit(a) }, icon("pencil", { size: 18 })),
+        a.email === ctx2.user.email ? h("span", { class: "icon-btn", "aria-hidden": "true" }) : h("button", { class: "icon-btn", "aria-label": "הסרת " + (a.name || a.email), title: "הסרה", onclick: () => remove(a) }, icon("trash", { size: 18 }))
+      ))
+    )));
+  };
+  search.addEventListener("input", () => {
+    term = search.value;
+    drawRows();
   });
   body.append(
     h(
       "div",
-      { class: "field" },
-      h("label", null, "הוספת כתובות"),
-      ta,
-      error,
-      h("div", { class: "btn-row" }, h("div", { style: { width: "160px" } }, role), h("button", { class: "btn btn-primary", onclick: add }, "הוספה לרשימה"))
+      { class: "page-head", style: { marginBottom: "12px", flexWrap: "wrap" } },
+      h("h2", null, "מי יכול להיכנס לאתר"),
+      h(
+        "div",
+        { class: "btn-row" },
+        meta,
+        h("button", { class: "btn", onclick: () => exportCsv(visible(), groups) }, icon("download", { size: 16 }), "ייצוא"),
+        h("button", { class: "btn", onclick: () => importDialog(ctx2, list, groups) }, icon("upload", { size: 16 }), "ייבוא"),
+        h("button", { class: "btn btn-primary", onclick: openAdd }, icon("plus", { size: 16 }), "הוספת מורשים")
+      )
     ),
-    h("div", { class: "page-head", style: { marginTop: "28px", marginBottom: "4px" } }, h("h2", null, "רשימת המורשים"), h("span", { class: "meta" }, `${list.length} כתובות`)),
+    h("label", { class: "search" }, icon("search", { size: 18 }), search),
+    filters,
     h("div", { class: "table-wrap" }, h(
       "table",
       null,
-      h("thead", null, h("tr", null, h("th", null, "מייל"), h("th", null, "תפקיד"), h("th", null, "נוסף/ה"), h("th", null, ""))),
-      h("tbody", null, list.map((a) => h(
-        "tr",
-        null,
-        h("td", null, a.email),
-        h("td", null, a.role === "admin" ? h("span", { class: "role" }, "מנהל/ת") : "תלמיד/ה"),
-        h("td", { class: "muted" }, formatDate(a.addedAt)),
-        h("td", { style: { textAlign: "end" } }, a.email === ctx2.user.email ? h("span", { class: "small muted" }, "את/ה") : h("button", {
-          class: "icon-btn",
-          "aria-label": "הסרת " + a.email,
-          title: "הסרה",
-          onclick: async () => {
-            if (!await confirmDialog("הסרת גישה", `${a.email} לא יוכל/תוכל להיכנס לאתר מהכניסה הבאה. הנתונים שלו/ה יישמרו.`, "הסרה", { danger: true })) return;
-            await ctx2.backend.removeAllowed(a.email);
-            toast("הוסר/ה");
-            ctx2.rerender();
-          }
-        }, icon("trash", { size: 18 })))
-      )))
+      h("thead", null, h("tr", null, h("th", null, "שם ומייל"), h("th", null, "קבוצות"), h("th", null, "תפקיד"), h("th", null, ""))),
+      tbody
     ))
+  );
+  drawFilters();
+  drawRows();
+}
+async function groupsView(body, ctx2) {
+  const [groups, list] = await Promise.all([loadGroups(ctx2), ctx2.backend.listAllowed()]);
+  const count = (id) => list.filter((a) => groupIdsOf(a).includes(id)).length;
+  const save = async (next, message) => {
+    await ctx2.backend.saveGroups(next);
+    toast(message);
+    ctx2.rerender();
+  };
+  const edit = (g) => modal(g ? "שינוי שם קבוצה" : "קבוצה חדשה", (close) => {
+    const name = h("input", { type: "text", value: g ? g.name : "", placeholder: 'למשל: קורס בית אל תשפ"ז' });
+    const err = errorLine();
+    return [
+      field("שם הקבוצה", name),
+      err,
+      formButtons(close, async () => {
+        const v = name.value.trim();
+        if (!v) {
+          err.textContent = "כתוב/כתבי שם לקבוצה.";
+          name.focus();
+          return;
+        }
+        if (groups.some((x) => x.name === v && x !== g)) {
+          err.textContent = "כבר יש קבוצה בשם הזה.";
+          return;
+        }
+        const next = g ? groups.map((x) => x.id === g.id ? { ...x, name: v } : x) : groups.concat({ id: "g" + Date.now().toString(36), name: v });
+        close();
+        await save(next, g ? "השם עודכן" : "הקבוצה נוצרה");
+      })
+    ];
+  });
+  const remove = async (g) => {
+    const n = count(g.id);
+    const msg = n ? `הקבוצה תוסר מ-${n} אנשים. הגישה שלהם לאתר והקבוצות האחרות שלהם לא ישתנו.` : "הקבוצה ריקה.";
+    if (!await confirmDialog(`מחיקת "${g.name}"`, msg, "מחיקה", { danger: true })) return;
+    for (const a of list.filter((x) => groupIdsOf(x).includes(g.id))) {
+      await ctx2.backend.updateAllowed(a.email, { groupIds: groupIdsOf(a).filter((id) => id !== g.id) });
+    }
+    await save(groups.filter((x) => x.id !== g.id), "הקבוצה נמחקה");
+  };
+  const move = async (i, d) => {
+    const j = i + d;
+    if (j < 0 || j >= groups.length) return;
+    const next = groups.slice();
+    [next[i], next[j]] = [next[j], next[i]];
+    await save(next, "הסדר עודכן");
+  };
+  body.append(
+    h(
+      "div",
+      { class: "page-head", style: { marginBottom: "4px" } },
+      h("h2", null, "קבוצות תלמידים"),
+      h("button", { class: "btn btn-primary", onclick: () => edit(null) }, icon("plus", { size: 16 }), "קבוצה חדשה")
+    ),
+    h("p", { class: "small muted", style: { marginBottom: "12px", maxWidth: "60ch" } }, "קבוצות עוזרות לסדר את המורשים ולעקוב אחרי ההתקדמות של כל מחזור או קורס. אדם יכול להשתייך לכמה קבוצות, והתלמידים רואים את הקבוצות שלהם ליד השם."),
+    groups.length ? h("ul", { class: "list" }, groups.map((g, i) => h("li", null, h(
+      "div",
+      { class: "row", style: { alignItems: "center" } },
+      h(
+        "div",
+        { class: "row-main" },
+        h("a", { class: "row-title", style: { fontSize: "1rem", color: "var(--ink)" }, href: "#/admin/allowed?group=" + encodeURIComponent(g.id) }, g.name),
+        h("div", { class: "row-sub" }, count(g.id) === 1 ? "אדם אחד" : `${count(g.id)} אנשים`)
+      ),
+      h(
+        "div",
+        { class: "row-actions", style: { margin: "0" } },
+        h("button", { class: "icon-btn", "aria-label": "למעלה", title: "למעלה", onclick: () => move(i, -1) }, icon("up", { size: 18 })),
+        h("button", { class: "icon-btn", "aria-label": "למטה", title: "למטה", onclick: () => move(i, 1) }, icon("down", { size: 18 })),
+        h("button", { class: "icon-btn", "aria-label": "שינוי שם", title: "שינוי שם", onclick: () => edit(g) }, icon("pencil", { size: 18 })),
+        h("button", { class: "icon-btn", "aria-label": "מחיקה", title: "מחיקה", onclick: () => remove(g) }, icon("trash", { size: 18 }))
+      )
+    )))) : h("div", { class: "empty" }, h("p", null, 'עדיין אין קבוצות. צור/י קבוצה ראשונה, למשל "קורס בית אל תשפ"ז" או "קורס מקוון".'))
   );
 }
 async function students(body, ctx2) {
-  const users = (await ctx2.backend.listUsers()).map((u) => ({ uid: u.uid, state: normalizeState(u, null) }));
+  const [rawUsers, allowedList, groups] = await Promise.all([ctx2.backend.listUsers(), ctx2.backend.listAllowed(), loadGroups(ctx2)]);
+  const byEmail = Object.fromEntries(allowedList.map((a) => [a.email, a]));
+  const users = rawUsers.map((u) => {
+    const state = normalizeState(u, null);
+    const a = byEmail[(state.profile.email || "").toLowerCase()];
+    return { uid: u.uid, state, name: a?.name || state.profile.name, groupIds: groupIdsOf(a) };
+  });
   if (!users.length) {
     body.append(h("div", { class: "empty" }, h("p", null, "עדיין אף אחד לא נכנס לאתר. תלמידים יופיעו כאן אחרי הכניסה הראשונה שלהם.")));
     return;
   }
   users.sort((a, b) => (b.state.lastSeen || 0) - (a.state.lastSeen || 0));
-  body.append(h("div", { class: "table-wrap" }, h(
-    "table",
-    null,
-    h("thead", null, h("tr", null, h("th", null, "שם"), h("th", null, "כניסה אחרונה"), h("th", null, "נלמד"), h("th", null, "תרגולים"), h("th", null, ""))),
-    h("tbody", null, users.map((u) => {
+  let filter = ctx2.route.params.group || "all";
+  const filters = h("div", { class: "filters", role: "group", "aria-label": "סינון לפי קבוצה", style: { marginBottom: "8px" } });
+  const tbody = h("tbody");
+  let inGroup = () => true;
+  const drawFilters = () => {
+    const f = groupFilters(groups, users, (u) => u.groupIds, filter, (id) => {
+      filter = id;
+      ctx2.replaceRoute("admin/students" + (id === "all" ? "" : "?group=" + encodeURIComponent(id)));
+      drawFilters();
+      drawRows();
+    });
+    inGroup = f.inGroup;
+    filters.replaceChildren(...f.buttons);
+  };
+  const drawRows = () => {
+    tbody.replaceChildren(...users.filter((u) => inGroup(u, filter)).map((u) => {
       const p = overallProgress(u.state, ctx2.content);
       return h(
         "tr",
         null,
-        h("td", null, h("div", null, u.state.profile.name || "ללא שם"), h("div", { class: "small muted" }, u.state.profile.email)),
+        h("td", null, h("div", null, u.name || "ללא שם"), h("div", { class: "small muted" }, u.state.profile.email)),
+        h("td", null, groupNames(groups, u.groupIds)),
         h("td", { class: "muted" }, formatDate(u.state.lastSeen)),
         h("td", null, p.pct + "%"),
         h("td", null, `⁦${u.state.practicedScenarios.length} / ${ctx2.content.clientScenarios.length}⁩`),
         h("td", { style: { textAlign: "end" } }, h("a", { href: "#/admin/user/" + encodeURIComponent(u.uid), class: "small" }, "פרטים"))
       );
-    }))
+    }));
+  };
+  body.append(filters, h("div", { class: "table-wrap" }, h(
+    "table",
+    null,
+    h("thead", null, h("tr", null, h("th", null, "שם"), h("th", null, "קבוצות"), h("th", null, "כניסה אחרונה"), h("th", null, "נלמד"), h("th", null, "תרגולים"), h("th", null, ""))),
+    tbody
   )));
+  drawFilters();
+  drawRows();
 }
 async function userDetail(page, ctx2, uid) {
-  page.append(h("a", { class: "back", href: "#/admin/students" }, icon("chevronStart", { size: 16 }), "כל התלמידים"));
+  page.append(h("a", { class: "back", href: "#/admin/students" }, icon("chevronStart", { size: 16 }), "התקדמות תלמידים"));
   const users = await ctx2.backend.listUsers();
   const raw = users.find((u) => u.uid === uid);
   if (!raw) {
@@ -2319,8 +2777,8 @@ async function contentEditor(body, ctx2) {
       h("button", { class: "icon-btn", "aria-label": "מחיקה", title: "מחיקה", onclick: () => remove(arr, i, title) }, icon("trash", { size: 18 }))
     )
   ));
-  const field = (label, input, hint) => h("div", { class: "field" }, h("label", null, label), input, hint ? h("span", { class: "hint" }, hint) : null);
-  const formButtons = (close, onSave) => h(
+  const field2 = (label, input, hint) => h("div", { class: "field" }, h("label", null, label), input, hint ? h("span", { class: "hint" }, hint) : null);
+  const formButtons2 = (close, onSave) => h(
     "div",
     { class: "btn-row" },
     h("button", { class: "btn", onclick: close }, "ביטול"),
@@ -2343,10 +2801,10 @@ async function contentEditor(body, ctx2) {
       const cat = h("select", null, c.questionCategories.map((x) => h("option", { value: x, selected: x === q.category ? "" : null }, x)));
       cat.value = q.category;
       return [
-        field("השאלה *", text),
-        field("מתי להשתמש בה", ctxIn),
-        field("קטגוריה", cat),
-        formButtons(close, required([text], close, () => {
+        field2("השאלה *", text),
+        field2("מתי להשתמש בה", ctxIn),
+        field2("קטגוריה", cat),
+        formButtons2(close, required([text], close, () => {
           Object.assign(q, { text: text.value.trim(), context: ctxIn.value.trim(), category: cat.value });
           if (i === void 0) c.coachingQuestions.push(q);
           save();
@@ -2381,8 +2839,8 @@ async function contentEditor(body, ctx2) {
       };
       t.questions.forEach(addQa);
       return [
-        field("שם הנושא *", title),
-        field("תיאור קצר", subtitle),
+        field2("שם הנושא *", title),
+        field2("תיאור קצר", subtitle),
         h(
           "div",
           { class: "field" },
@@ -2391,7 +2849,7 @@ async function contentEditor(body, ctx2) {
           h("button", { class: "btn btn-quiet", style: { alignSelf: "flex-start" }, onclick: () => addQa({ q: "", a: "" }) }, icon("plus", { size: 16 }), "הוספת שאלה")
         ),
         h("p", { class: "small muted", style: { marginBottom: "10px" } }, "שינוי סדר או מחיקה של שאלות בנושא עלולים לאפס את סימוני החזרה שלהן אצל התלמידים."),
-        formButtons(close, required([title], close, () => {
+        formButtons2(close, required([title], close, () => {
           t.title = title.value.trim();
           t.subtitle = subtitle.value.trim();
           t.questions = qaRows.map((r) => ({ q: r.q.value.trim(), a: r.a.value.trim() })).filter((r) => r.q);
@@ -2414,12 +2872,12 @@ async function contentEditor(body, ctx2) {
         g[k] = h("textarea", { value: (s.guidance?.[k] || []).join("\n") });
       });
       return [
-        field("כותרת *", title),
-        field("תיאור המקרה *", summary),
-        field("ציטוט הלקוח/ה", quote),
-        field("תגיות", tags, "מופרדות בפסיק"),
-        Object.entries(GUIDANCE_LABELS).map(([k, label]) => field(label, g[k], "פריט אחד בכל שורה")),
-        formButtons(close, required([title, summary], close, () => {
+        field2("כותרת *", title),
+        field2("תיאור המקרה *", summary),
+        field2("ציטוט הלקוח/ה", quote),
+        field2("תגיות", tags, "מופרדות בפסיק"),
+        Object.entries(GUIDANCE_LABELS).map(([k, label]) => field2(label, g[k], "פריט אחד בכל שורה")),
+        formButtons2(close, required([title, summary], close, () => {
           s.title = title.value.trim();
           s.summary = summary.value.trim();
           s.clientQuote = quote.value.trim();
@@ -2440,8 +2898,8 @@ async function contentEditor(body, ctx2) {
     modal(i === void 0 ? "קטגוריה חדשה" : "שינוי שם קטגוריה", (close) => {
       const name = h("input", { type: "text", value: old });
       return [
-        field("שם *", name, i === void 0 ? null : "השאלות בקטגוריה יעודכנו לשם החדש."),
-        formButtons(close, required([name], close, () => {
+        field2("שם *", name, i === void 0 ? null : "השאלות בקטגוריה יעודכנו לשם החדש."),
+        formButtons2(close, required([name], close, () => {
           const v = name.value.trim();
           if (c.questionCategories.includes(v) && v !== old) {
             toast("קטגוריה בשם הזה כבר קיימת");
@@ -2520,12 +2978,14 @@ async function contentEditor(body, ctx2) {
 }
 var ADMIN_VIEWS = { admin };
 
-// ../../../../../../home/claude/nlp-coach/js/app.js
+// ../../../../../home/claude/nlp-coach/js/app.js
 var root = document.getElementById("app");
 var ctx = {
   backend: null,
   user: null,
   role: null,
+  access: null,
+  myGroups: [],
   state: null,
   content: DEFAULT_CONTENT,
   notes: {},
@@ -2593,11 +3053,16 @@ function gateScreen(children) {
 function loadingScreen() {
   gateScreen([h("p", { class: "muted" }, "טוען…")]);
 }
+function collegeHeader() {
+  return h("img", { class: "gate-logo", src: COLLEGE_LOGO, alt: 'מחשבה יוצרת: המכללה ללימודי נל"פ ויהדות', width: "160", height: "160" });
+}
+var ACCESS_NOTE = "לקבלת גישה יש לפנות למנהל המכללה.";
 function signInScreen(error) {
   const demo = ctx.backend.mode === "demo";
   gateScreen([
-    h("h1", null, APP_NAME),
-    h("p", null, "כלי עבודה יומיומי למאמני ותלמידי NLP: חזרה על החומר, מאגר שאלות אימון ותרגול תרחישים."),
+    collegeHeader(),
+    h("h1", null, "אתר הקורס לתלמידי מכללת מחשבה יוצרת"),
+    h("p", null, "חזרה על החומר, מאגר שאלות אימון ותרגול תרחישים."),
     h("button", {
       class: "btn",
       onclick: async (e) => {
@@ -2611,19 +3076,16 @@ function signInScreen(error) {
       }
     }, demo ? null : googleLogo(), demo ? "כניסה למצב הדגמה" : "התחברות עם Google"),
     error ? h("p", { class: "small", style: { color: "var(--danger)", marginTop: "12px" } }, error) : null,
-    h(
-      "p",
-      { class: "small", style: { marginTop: "16px" } },
-      demo ? "מצב הדגמה: אין התחברות אמיתית, והנתונים נשמרים בדפדפן זה בלבד." : "הכניסה פתוחה רק לכתובות מייל שאושרו על ידי מנהל/ת הקורס."
-    )
+    h("div", { class: "gate-note" }, h("p", null, "הכניסה פתוחה לתלמידי המכללה בלבד."), h("p", { style: { fontWeight: "500", color: "var(--ink)" } }, ACCESS_NOTE))
   ]);
 }
 async function pendingScreen() {
   const requested = await ctx.backend.hasRequested(ctx.user);
   gateScreen([
-    h("h1", null, "החשבון ממתין לאישור"),
-    h("p", null, `התחברת בתור ${ctx.user.email}. הכתובת הזו עדיין לא ברשימת המורשים.`),
-    requested ? h("p", null, "בקשת הגישה נשלחה. אחרי שמנהל/ת יאשר/תאשר אותה, היכנס/י שוב לאתר.") : h("button", {
+    collegeHeader(),
+    h("h1", null, "החשבון עדיין לא אושר"),
+    h("p", null, `התחברת בתור ${ctx.user.email}. הכתובת הזו עדיין לא ברשימת התלמידים המורשים. ${ACCESS_NOTE}`),
+    requested ? h("p", null, "בקשת הגישה שלך נשלחה גם דרך האתר. אחרי האישור, היכנס/י שוב.") : h("button", {
       class: "btn btn-primary",
       onclick: async () => {
         try {
@@ -2635,12 +3097,12 @@ async function pendingScreen() {
           toast("שליחת הבקשה נכשלה");
         }
       }
-    }, "שליחת בקשת גישה"),
+    }, "שליחת בקשת גישה דרך האתר"),
     h(
       "div",
-      { class: "btn-row", style: { marginTop: "12px" } },
+      { class: "btn-row", style: { marginTop: "12px", justifyContent: "center" } },
       h("button", { class: "btn btn-quiet", onclick: () => location.reload() }, "בדיקה מחדש"),
-      h("button", { class: "btn btn-quiet", onclick: () => ctx.backend.signOut() }, "התנתקות")
+      h("button", { class: "btn btn-quiet", onclick: () => ctx.backend.signOut() }, "התנתקות עם חשבון אחר")
     )
   ]);
 }
@@ -2702,6 +3164,10 @@ async function onAuth(user) {
   const access = await ctx.backend.getAccess(user);
   if (!access) return pendingScreen();
   ctx.role = access.role;
+  ctx.access = access;
+  const groups = await ctx.backend.listGroups().catch(() => []);
+  const myIds = Array.isArray(access.groupIds) ? access.groupIds : access.groupId ? [access.groupId] : [];
+  ctx.myGroups = myIds.map((id) => (groups || []).find((g) => g.id === id)?.name).filter(Boolean);
   const [rawState, content, notes] = await Promise.all([
     ctx.backend.loadState(user.uid).catch(() => null),
     ctx.backend.getContent().catch(() => null),
