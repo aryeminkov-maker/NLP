@@ -1,0 +1,2740 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>מלווה NLP</title>
+<meta name="description" content="כלי עבודה יומיומי למאמני ותלמידי NLP: חזרה, מאגר שאלות אימון ותרגול תרחישים.">
+<meta name="theme-color" content="#0E5E6F">
+<link rel="icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MTIgNTEyIj48cmVjdCB3aWR0aD0iNTEyIiBoZWlnaHQ9IjUxMiIgcng9IjExMiIgZmlsbD0iIzBFNUU2RiIvPjxjaXJjbGUgY3g9IjI1NiIgY3k9IjI1NiIgcj0iMTMyIiBmaWxsPSJub25lIiBzdHJva2U9IiNGRkZGRkYiIHN0cm9rZS13aWR0aD0iMzYiLz48Y2lyY2xlIGN4PSIyNTYiIGN5PSIyNTYiIHI9IjQ0IiBmaWxsPSIjRkZGRkZGIi8+PC9zdmc+" type="image/svg+xml">
+<link rel="apple-touch-icon" href="data:image/png;base64,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">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Hebrew:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* מלווה NLP — עיצוב נקי ומודרני: צבע הדגשה אחד (פטרול), אפורים ניטרליים,
+   רשימות עם קווים דקים במקום כרטיסים. נכתב RTL עם תכונות לוגיות. */
+
+:root {
+  --bg: #FFFFFF;
+  --panel: #F6F7F7;
+  --ink: #202124;
+  --ink-2: #5F6368;
+  --ink-3: #8A8F95;
+  --line: #E4E6E8;
+  --line-2: #EEF0F1;
+  --field: #DADCE0;
+  --accent: #0E5E6F;
+  --accent-2: #0A4856;
+  --mist: #E3EEF0;
+  --on-accent: #FFFFFF;
+  --mark: #D7EAEE;
+  --danger: #B3261E;
+  --danger-bg: #FBEAE9;
+  --ok: #1E6B3A;
+  --hand: #1F3FA8;
+  --scrim: rgba(32, 33, 36, .45);
+  --radius: 8px;
+  --font: 'IBM Plex Sans Hebrew', system-ui, -apple-system, 'Segoe UI', Arial, sans-serif;
+  color-scheme: light;
+}
+
+:root[data-theme="dark"] {
+  --bg: #121417;
+  --panel: #181B1F;
+  --ink: #E8EAED;
+  --ink-2: #A5ABB2;
+  --ink-3: #7A8088;
+  --line: #2A2E33;
+  --line-2: #22262A;
+  --field: #3A3F45;
+  --accent: #5FB3C3;
+  --accent-2: #86C9D5;
+  --mist: #163238;
+  --on-accent: #0B2328;
+  --mark: #1E4950;
+  --danger: #F2B8B5;
+  --danger-bg: #3A1F1E;
+  --ok: #8FD4A6;
+  --hand: #9DB2FF;
+  --scrim: rgba(0, 0, 0, .6);
+  color-scheme: dark;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #121417;
+    --panel: #181B1F;
+    --ink: #E8EAED;
+    --ink-2: #A5ABB2;
+    --ink-3: #7A8088;
+    --line: #2A2E33;
+    --line-2: #22262A;
+    --field: #3A3F45;
+    --accent: #5FB3C3;
+    --accent-2: #86C9D5;
+    --mist: #163238;
+    --on-accent: #0B2328;
+    --mark: #1E4950;
+    --danger: #F2B8B5;
+    --danger-bg: #3A1F1E;
+    --ok: #8FD4A6;
+    --hand: #9DB2FF;
+    --scrim: rgba(0, 0, 0, .6);
+    color-scheme: dark;
+  }
+}
+
+html { font-size: 16px; }
+html[data-font="sm"] { font-size: 15px; }
+html[data-font="lg"] { font-size: 18px; }
+
+*, *::before, *::after { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font);
+  font-size: 1rem;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, p { margin: 0; }
+h1 { font-size: 1.5rem; font-weight: 600; line-height: 1.3; }
+h2 { font-size: 1.125rem; font-weight: 600; line-height: 1.4; }
+h3 { font-size: 1rem; font-weight: 600; }
+button, input, textarea, select { font: inherit; color: inherit; }
+button { cursor: pointer; background: none; border: 0; padding: 0; }
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+ul { margin: 0; padding: 0; list-style: none; }
+svg { display: block; flex: none; }
+[hidden] { display: none !important; }
+
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 4px; }
+
+.sr-only {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+}
+
+/* ---------- סרגל עליון ---------- */
+.topbar {
+  position: sticky; top: 0; z-index: 10;
+  display: flex; align-items: center; gap: 24px;
+  height: 56px; padding-inline: 24px;
+  background: var(--bg);
+  border-block-end: 1px solid var(--line);
+}
+.brand { font-weight: 600; font-size: 1rem; color: var(--ink); white-space: nowrap; }
+.brand:hover { text-decoration: none; }
+.tabs { display: flex; gap: 22px; height: 100%; overflow-x: auto; scrollbar-width: none; flex: 1; }
+.tabs::-webkit-scrollbar { display: none; }
+.tab {
+  display: flex; align-items: center; height: 100%;
+  color: var(--ink-2); font-size: .9rem; white-space: nowrap;
+  border-block-end: 2px solid transparent; margin-block-end: -1px;
+}
+.tab:hover { color: var(--ink); text-decoration: none; }
+.tab[aria-current="page"] { color: var(--ink); font-weight: 500; border-block-end-color: var(--accent); }
+.avatar {
+  width: 30px; height: 30px; border-radius: 50%;
+  background: var(--mist); color: var(--accent);
+  font-size: .75rem; font-weight: 600;
+  display: grid; place-items: center; overflow: hidden; flex: none;
+}
+.avatar img { width: 100%; height: 100%; object-fit: cover; }
+.avatar-link:hover { text-decoration: none; }
+.demo-note {
+  font-size: .8rem; color: var(--ink-2);
+  padding: 6px 24px; border-block-end: 1px solid var(--line-2); background: var(--panel);
+}
+
+/* ---------- עמוד ---------- */
+.page { max-width: 760px; margin-inline: auto; padding: 32px 24px 80px; }
+.page-head { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; margin-block-end: 20px; }
+.page-head .meta { font-size: .875rem; color: var(--ink-2); white-space: nowrap; }
+.lead { color: var(--ink-2); margin-block: -8px 24px; max-width: 60ch; }
+.section { margin-block-start: 40px; }
+.section > h2 { margin-block-end: 8px; }
+.muted { color: var(--ink-2); }
+.small { font-size: .875rem; }
+.back { display: inline-flex; align-items: center; gap: 4px; font-size: .875rem; margin-block-end: 16px; color: var(--ink-2); }
+
+/* ---------- כפתורים ושדות ---------- */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+  height: 36px; padding-inline: 14px;
+  border: 1px solid var(--field); border-radius: var(--radius);
+  font-size: .9rem; font-weight: 500; color: var(--ink); background: var(--bg);
+  white-space: nowrap;
+}
+.btn:hover { background: var(--panel); text-decoration: none; }
+.btn-primary { background: var(--accent); border-color: var(--accent); color: var(--on-accent); }
+.btn-primary:hover { background: var(--accent-2); border-color: var(--accent-2); }
+.btn-danger { color: var(--danger); }
+.btn-quiet { border-color: transparent; color: var(--accent); padding-inline: 6px; }
+.btn-quiet:hover { background: var(--mist); }
+.btn-row { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+.icon-btn {
+  width: 34px; height: 34px; border-radius: var(--radius);
+  display: grid; place-items: center; color: var(--ink-3);
+}
+.icon-btn:hover { background: var(--panel); color: var(--ink); }
+.icon-btn[aria-pressed="true"] { color: var(--accent); }
+
+.field { display: flex; flex-direction: column; gap: 6px; margin-block-end: 14px; }
+.field label { font-size: .875rem; font-weight: 500; }
+.field .hint { font-size: .8rem; color: var(--ink-2); }
+input[type="text"], input[type="email"], input[type="search"], textarea, select {
+  width: 100%; border: 1px solid var(--field); border-radius: var(--radius);
+  background: var(--bg); padding: 8px 12px; font-size: .95rem; line-height: 1.5;
+}
+input:focus, textarea:focus, select:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px var(--mist); }
+textarea { resize: vertical; min-height: 84px; }
+
+.search {
+  display: flex; align-items: center; gap: 10px;
+  border: 1px solid var(--field); border-radius: var(--radius);
+  height: 42px; padding-inline: 12px; color: var(--ink-3);
+  margin-block-end: 12px;
+}
+.search:focus-within { border-color: var(--accent); box-shadow: 0 0 0 3px var(--mist); }
+.search input { border: 0; padding: 0; height: 100%; background: none; box-shadow: none !important; }
+
+/* ---------- מסננים (טאבים טקסטואליים) ---------- */
+.filters {
+  display: flex; gap: 18px; overflow-x: auto; scrollbar-width: none;
+  border-block-end: 1px solid var(--line); margin-block-end: 4px;
+}
+.filters::-webkit-scrollbar { display: none; }
+.filter {
+  padding-block: 8px; font-size: .875rem; color: var(--ink-2); white-space: nowrap;
+  border-block-end: 2px solid transparent; margin-block-end: -1px;
+}
+.filter:hover { color: var(--ink); }
+.filter[aria-pressed="true"] { color: var(--accent); font-weight: 500; border-block-end-color: var(--accent); }
+
+/* ---------- רשימות ---------- */
+.list > li { border-block-end: 1px solid var(--line-2); }
+.list > li:last-child { border-block-end: 0; }
+.row { display: flex; gap: 14px; align-items: flex-start; padding-block: 16px; }
+.row-main { flex: 1; min-width: 0; }
+.row-title { font-size: 1.05rem; font-weight: 500; line-height: 1.5; }
+.row-sub { font-size: .875rem; color: var(--ink-2); margin-block-start: 2px; }
+.row-side { font-size: .8rem; color: var(--ink-2); white-space: nowrap; padding-block-start: 4px; }
+.row-actions { display: flex; gap: 2px; margin-block-start: -4px; }
+.row-link { display: flex; gap: 14px; align-items: center; padding-block: 16px; color: var(--ink); }
+.row-link:hover { text-decoration: none; }
+.row-link:hover .row-title { color: var(--accent); }
+.chev { color: var(--ink-3); }
+mark { background: var(--mark); color: inherit; border-radius: 3px; padding-inline: 1px; }
+
+.note-preview {
+  margin-block-start: 8px; font-size: .9rem; color: var(--hand);
+  border-inline-start: 2px solid var(--mist); padding-inline-start: 10px; border-radius: 0;
+  white-space: pre-wrap;
+}
+
+/* ---------- התקדמות ---------- */
+.bar { height: 4px; background: var(--line-2); border-radius: 2px; overflow: hidden; }
+.bar > span { display: block; height: 100%; background: var(--accent); border-radius: 2px; }
+.bar-wrap { width: 120px; flex: none; }
+.bar-wrap .small { margin-block-start: 4px; text-align: end; }
+
+.stats { display: flex; gap: 32px; flex-wrap: wrap; margin-block: 8px 0; }
+.stat .num { font-size: 1.5rem; font-weight: 600; line-height: 1.2; }
+.stat .lbl { font-size: .8rem; color: var(--ink-2); }
+
+/* ---------- חזרה ---------- */
+.qa { padding-block: 18px; }
+.qa-q { font-size: 1.05rem; font-weight: 500; }
+.qa-a { margin-block-start: 8px; color: var(--ink); max-width: 64ch; }
+.qa-state { font-size: .8rem; color: var(--ink-2); margin-inline-start: 8px; font-weight: 400; }
+.qa-state.known { color: var(--ok); }
+.qa-tools { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; margin-block-start: 12px; }
+
+.flash { text-align: center; padding-block: 40px 24px; }
+.flash .cat { font-size: .85rem; color: var(--accent); font-weight: 500; margin-block-end: 12px; }
+.flash .q { font-size: 1.4rem; font-weight: 500; line-height: 1.45; max-width: 30ch; margin-inline: auto; }
+.flash .a { margin-block-start: 24px; color: var(--ink); max-width: 56ch; margin-inline: auto; text-align: start; }
+.flash .btn-row { justify-content: center; margin-block-start: 28px; }
+
+/* ---------- תרחישים ---------- */
+.quote {
+  margin: 16px 0; padding-inline-start: 14px;
+  border-inline-start: 3px solid var(--accent); border-radius: 0;
+  font-size: 1.05rem; color: var(--ink);
+}
+.tags { font-size: .85rem; color: var(--ink-2); }
+.guidance { display: grid; grid-template-columns: 1fr 1fr; gap: 24px 32px; margin-block-start: 20px; }
+.guidance h3 { font-size: .95rem; margin-block-end: 6px; color: var(--accent); }
+.guidance li { position: relative; padding-inline-start: 14px; margin-block-end: 6px; font-size: .95rem; }
+.guidance li::before {
+  content: ""; position: absolute; inset-inline-start: 0; top: .7em;
+  width: 5px; height: 5px; border-radius: 50%; background: var(--ink-3);
+}
+
+/* ---------- הערות ---------- */
+.note-box { margin-block-start: 14px; }
+.note-box textarea { color: var(--hand); }
+.note-box .hint { font-size: .8rem; color: var(--ink-2); margin-block-start: 4px; }
+
+/* ---------- טבלה (ניהול) ---------- */
+.table-wrap { overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; font-size: .9rem; }
+th, td { text-align: start; padding: 10px 8px; border-block-end: 1px solid var(--line-2); vertical-align: middle; }
+th { font-weight: 500; color: var(--ink-2); font-size: .8rem; }
+.role { font-size: .75rem; color: var(--accent); background: var(--mist); padding: 2px 8px; border-radius: 99px; }
+
+/* ---------- מצב ריק ---------- */
+.empty { padding: 40px 16px; text-align: center; color: var(--ink-2); }
+.empty p { max-width: 42ch; margin-inline: auto; margin-block-end: 16px; }
+
+/* ---------- מצב מפגש ---------- */
+.session {
+  position: fixed; inset: 0; z-index: 50; background: var(--bg);
+  display: flex; flex-direction: column; padding: 20px 24px 28px;
+}
+.session-top { display: flex; justify-content: space-between; align-items: center; color: var(--ink-2); font-size: .9rem; }
+.session-body { flex: 1; display: flex; flex-direction: column; justify-content: center; max-width: 820px; margin-inline: auto; width: 100%; touch-action: pan-y; }
+.session-cat { font-size: .95rem; color: var(--accent); font-weight: 500; margin-block-end: 14px; }
+.session-q { font-size: clamp(1.6rem, 4.2vw, 2.6rem); font-weight: 500; line-height: 1.35; }
+.session-ctx { margin-block-start: 18px; color: var(--ink-2); font-size: 1rem; }
+.session-foot { display: flex; align-items: center; gap: 16px; max-width: 820px; margin-inline: auto; width: 100%; }
+.session-foot .bar { flex: 1; }
+
+/* ---------- חלון ---------- */
+.modal-scrim { position: fixed; inset: 0; z-index: 60; background: var(--scrim); display: grid; place-items: center; padding: 16px; }
+.modal { background: var(--bg); border-radius: 12px; width: min(560px, 100%); max-height: 88vh; overflow: auto; padding: 22px 24px; }
+.modal h2 { margin-block-end: 14px; }
+.modal .btn-row { justify-content: flex-end; margin-block-start: 8px; }
+
+/* ---------- הודעה קופצת ---------- */
+.toast {
+  position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%);
+  z-index: 70; background: var(--ink); color: var(--bg);
+  padding: 10px 16px; border-radius: var(--radius); font-size: .9rem;
+}
+
+/* ---------- כניסה ---------- */
+.gate { min-height: 100vh; display: grid; place-items: center; padding: 24px; }
+.gate-box { width: min(400px, 100%); }
+.gate-box h1 { margin-block: 0 8px; }
+.gate-box p { color: var(--ink-2); margin-block-end: 24px; }
+.gate-box .btn { width: 100%; height: 44px; }
+.google-g { width: 18px; height: 18px; }
+
+/* ---------- עריכת תוכן ---------- */
+.editor-item { padding-block: 14px; border-block-end: 1px solid var(--line-2); }
+.editor-item:last-child { border-block-end: 0; }
+.subtabs { display: flex; gap: 18px; border-block-end: 1px solid var(--line); margin-block-end: 16px; }
+
+/* ---------- רספונסיביות ---------- */
+@media (max-width: 720px) {
+  .topbar { gap: 14px; padding-inline: 16px; }
+  .tabs { gap: 18px; }
+  .page { padding: 22px 16px 64px; }
+  .guidance { grid-template-columns: 1fr; }
+  .row-side { display: none; }
+  .row-side.keep { display: block; }
+  .bar-wrap { width: 84px; }
+  .stats { gap: 22px; }
+  .demo-note { padding-inline: 16px; }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .session-q { transition: opacity .15s ease; }
+}
+.btn-quiet.btn-danger { color: var(--danger); }
+.btn-quiet.btn-danger:hover { background: var(--danger-bg); }
+.btn:disabled { opacity: .6; cursor: default; }
+
+@media (max-width: 720px) {
+  .list .row { flex-wrap: wrap; row-gap: 4px; }
+  .list .row .row-actions { width: 100%; margin: 0 -8px 0 0; }
+}
+@media (max-width: 520px) {
+  .brand { display: none; }
+  .tabs { gap: 16px; }
+}
+
+</style>
+<script>
+try {
+  var p = JSON.parse(localStorage.getItem("nlp.prefs") || "{}");
+  if (p.theme === "light" || p.theme === "dark") document.documentElement.dataset.theme = p.theme;
+  if (p.font === "sm" || p.font === "lg") document.documentElement.dataset.font = p.font;
+} catch (e) {}
+</script>
+</head>
+<body>
+<div id="app" aria-live="polite"></div>
+<noscript>האתר דורש JavaScript.</noscript>
+<script type="module">
+var __defProp = Object.defineProperty;
+var __getOwnPropNames = Object.getOwnPropertyNames;
+var __esm = (fn, res) => function __init() {
+  return fn && (res = (0, fn[__getOwnPropNames(fn)[0]])(fn = 0)), res;
+};
+var __export = (target, all) => {
+  for (var name in all)
+    __defProp(target, name, { get: all[name], enumerable: true });
+};
+
+// ../../../../../../home/claude/nlp-coach/js/backend-firebase.js
+var backend_firebase_exports = {};
+__export(backend_firebase_exports, {
+  createFirebaseBackend: () => createFirebaseBackend
+});
+async function createFirebaseBackend(config) {
+  const [{ initializeApp }, A, F] = await Promise.all([
+    import(`${BASE}/firebase-app.js`),
+    import(`${BASE}/firebase-auth.js`),
+    import(`${BASE}/firebase-firestore.js`)
+  ]);
+  const app = initializeApp(config);
+  const auth = A.getAuth(app);
+  auth.languageCode = "he";
+  let db;
+  try {
+    db = F.initializeFirestore(app, {
+      localCache: F.persistentLocalCache({ tabManager: F.persistentMultipleTabManager() })
+    });
+  } catch (e) {
+    db = F.getFirestore(app);
+  }
+  const { doc, getDoc, setDoc, deleteDoc, collection, getDocs, addDoc, writeBatch } = F;
+  const toUser = (u) => u && {
+    uid: u.uid,
+    email: (u.email || "").toLowerCase(),
+    name: u.displayName || u.email || "",
+    photo: u.photoURL || ""
+  };
+  const ts = (v) => v && typeof v.toMillis === "function" ? v.toMillis() : v || 0;
+  return {
+    mode: "firebase",
+    async init(callback) {
+      try {
+        await A.getRedirectResult(auth);
+      } catch (e) {
+        console.warn(e);
+      }
+      A.onAuthStateChanged(auth, (u) => callback(toUser(u)));
+    },
+    async signIn() {
+      const provider = new A.GoogleAuthProvider();
+      provider.setCustomParameters({ prompt: "select_account" });
+      try {
+        await A.signInWithPopup(auth, provider);
+      } catch (e) {
+        if (["auth/popup-blocked", "auth/operation-not-supported-in-this-environment", "auth/cancelled-popup-request"].includes(e.code)) {
+          await A.signInWithRedirect(auth, provider);
+        } else if (e.code !== "auth/popup-closed-by-user") {
+          throw e;
+        }
+      }
+    },
+    async signOut() {
+      await A.signOut(auth);
+    },
+    async getAccess(u) {
+      try {
+        const snap = await getDoc(doc(db, "allowedEmails", u.email));
+        return snap.exists() ? { role: snap.data().role || "student" } : null;
+      } catch (e) {
+        return null;
+      }
+    },
+    async hasRequested(u) {
+      try {
+        return (await getDoc(doc(db, "accessRequests", u.uid))).exists();
+      } catch (e) {
+        return false;
+      }
+    },
+    async requestAccess(u) {
+      await setDoc(doc(db, "accessRequests", u.uid), {
+        email: u.email,
+        name: u.name,
+        requestedAt: Date.now()
+      });
+    },
+    async getContent() {
+      const snap = await getDoc(doc(db, "content", "main"));
+      return snap.exists() ? snap.data() : null;
+    },
+    async saveContent(content) {
+      await setDoc(doc(db, "content", "main"), content);
+    },
+    async loadState(uid) {
+      const snap = await getDoc(doc(db, "users", uid));
+      return snap.exists() ? snap.data() : null;
+    },
+    async saveState(uid, state) {
+      await setDoc(doc(db, "users", uid), state);
+    },
+    async listNotes(uid) {
+      const snap = await getDocs(collection(db, "users", uid, "notes"));
+      const out = {};
+      snap.forEach((d) => {
+        out[d.id] = { text: d.data().text, updatedAt: ts(d.data().updatedAt) };
+      });
+      return out;
+    },
+    async setNote(uid, key, text) {
+      const ref = doc(db, "users", uid, "notes", key);
+      if (text.trim()) await setDoc(ref, { text, updatedAt: Date.now() });
+      else await deleteDoc(ref);
+    },
+    async listJournal(uid) {
+      const snap = await getDocs(collection(db, "users", uid, "journal"));
+      const out = [];
+      snap.forEach((d) => out.push({ id: d.id, ...d.data() }));
+      return out.sort((a, b) => b.createdAt - a.createdAt);
+    },
+    async addJournal(uid, entry) {
+      await addDoc(collection(db, "users", uid, "journal"), { ...entry, createdAt: Date.now() });
+    },
+    async deleteJournal(uid, id) {
+      await deleteDoc(doc(db, "users", uid, "journal", id));
+    },
+    // ---------- ניהול ----------
+    async listAllowed() {
+      const snap = await getDocs(collection(db, "allowedEmails"));
+      const out = [];
+      snap.forEach((d) => out.push({ email: d.id, ...d.data() }));
+      return out.sort((a, b) => a.email.localeCompare(b.email));
+    },
+    async addAllowed(emails, role) {
+      const batch = writeBatch(db);
+      emails.forEach((email) => {
+        batch.set(doc(db, "allowedEmails", email), { role, addedAt: Date.now(), addedBy: auth.currentUser?.email || "" }, { merge: true });
+      });
+      await batch.commit();
+    },
+    async removeAllowed(email) {
+      await deleteDoc(doc(db, "allowedEmails", email));
+    },
+    async listRequests() {
+      const snap = await getDocs(collection(db, "accessRequests"));
+      const out = [];
+      snap.forEach((d) => out.push({ uid: d.id, ...d.data() }));
+      return out.sort((a, b) => b.requestedAt - a.requestedAt);
+    },
+    async approveRequest(req) {
+      const batch = writeBatch(db);
+      batch.set(doc(db, "allowedEmails", req.email), { role: "student", addedAt: Date.now(), addedBy: auth.currentUser?.email || "" });
+      batch.delete(doc(db, "accessRequests", req.uid));
+      await batch.commit();
+    },
+    async rejectRequest(uid) {
+      await deleteDoc(doc(db, "accessRequests", uid));
+    },
+    async listUsers() {
+      const snap = await getDocs(collection(db, "users"));
+      const out = [];
+      snap.forEach((d) => out.push({ uid: d.id, ...d.data() }));
+      return out;
+    },
+    async getUserNotes(uid) {
+      return this.listNotes(uid);
+    },
+    async getUserJournal(uid) {
+      return this.listJournal(uid);
+    }
+  };
+}
+var V, BASE;
+var init_backend_firebase = __esm({
+  "../../../../../../home/claude/nlp-coach/js/backend-firebase.js"() {
+    V = "10.12.2";
+    BASE = `https://www.gstatic.com/firebasejs/${V}`;
+  }
+});
+
+// ../../../../../../home/claude/nlp-coach/js/config.js
+// ===== פרטי החיבור ל-Firebase: כאן מדביקים את הערכים. כל עוד apiKey ריק, האתר במצב הדגמה =====
+var firebaseConfig = {
+  apiKey: "",
+  authDomain: "",
+  projectId: "",
+  storageBucket: "",
+  messagingSenderId: "",
+  appId: ""
+};
+var APP_NAME = "מלווה NLP";
+
+// ../../../../../../home/claude/nlp-coach/js/default-content.js
+var DEFAULT_CONTENT = {
+  version: 1,
+  learningTopics: [
+    {
+      id: "topic-outcome",
+      title: "מיקוד בתוצאה רצויה",
+      subtitle: "איך להוביל לקוח מתלונה למטרה מנוסחת היטב",
+      questions: [
+        { q: "מה ההבדל בין 'בעיה' ל'תוצאה רצויה' בשפת ה-NLP?", a: "בעיה מתארת מצב שממנו רוצים להתרחק (מה לא עובד). תוצאה רצויה מתארת מצב שאליו רוצים להתקרב - מנוסחת בחיוב, בזמן הווה, ובשליטת הלקוח. המעבר מבעיה לתוצאה הוא הצעד הראשון בכל תהליך אימון." },
+        { q: "מהם קריטריוני התוצאה המוגדרת היטב (Well-Formed Outcome)?", a: "ניסוח חיובי, בשליטת הלקוח, מוגדר בהקשר (מתי, איפה, עם מי), ניתן לאימות חושי (איך תדע/י שהשגת את זה), שומר על תוצרי הלוואי החיוביים של המצב הנוכחי, ותואם לערכים הרחבים יותר של הלקוח." },
+        { q: "מה עושים כשלקוח מנסח מטרה בשלילה, כמו 'אני לא רוצה להיות לחוץ'?", a: "שואלים 'ואם לא לחוץ - איך היית רוצה להרגיש במקום זה?' זה מזמין את הלקוח לנסח מחדש בכיוון חיובי ומדויק יותר, במקום להישאר ממוקד במה שלא רוצים." }
+      ]
+    },
+    {
+      id: "topic-rapport",
+      title: "בניית ראפור וקשר",
+      subtitle: "יצירת מרחב בטוח לתהליך אימוני עמוק",
+      questions: [
+        { q: "מהי טכניקת ה-Pacing and Leading?", a: "Pacing הוא התאמה עדינה לשפת הגוף, הקצב והטון של הלקוח כדי ליצור תחושת הבנה והזדהות. לאחר שנוצר ראפור, ה-Leading הוא הובלה הדרגתית לכיוון חדש - בקצב, בתוכן או במצב הרגשי." },
+        { q: "איך מזהים מערכת ייצוג מועדפת (ויזואלית, שמיעתית, תחושתית)?", a: "מקשיבים למילים שהלקוח בוחר ('אני רואה את זה', 'זה נשמע לי נכון', 'אני מרגיש/ה את זה') ולתנועות עיניים. התאמת השפה למערכת המועדפת מחזקת את הראפור באופן משמעותי." },
+        { q: "מה חשוב לזכור כשמלווים לקוח שנמצא במצב רגשי עוצמתי?", a: "לתת מקום ולגיטימציה לרגש, לא למהר לפתור, ולשמור על נוכחות רגועה - היא עצמה משדרת ביטחון. רק אחרי שהרגש קיבל מקום אפשר להתקדם לחקירה או לפעולה." },
+        { q: "מה ההבדל בין אמפתיה להזדהות בתפקיד המאמן/ת?", a: "אמפתיה היא הבנה עמוקה של חוויית הלקוח תוך שמירה על עמדה חיצונית ומקצועית. הזדהות היא היכנסות לתוך החוויה עד כדי טשטוש הגבול - מה שעלול לפגוע ביכולת לראות את התמונה במבט צלול." }
+      ]
+    },
+    {
+      id: "topic-beliefs",
+      title: "אמונות מעצבות ומגבילות",
+      subtitle: "זיהוי ועבודה עם אמונות שמעצבות התנהגות",
+      questions: [
+        { q: "איך מזהים אמונה מגבילה בשיחה?", a: "לרוב מופיעה כהכללה ('אני תמיד...', 'אנשים כמוני לא...') או כקשר סיבתי נוקשה ('אם X אז בהכרח Y'). שימו לב לניסוחים מוחלטים וללשון שיפוטית כלפי העצמי." },
+        { q: "מהי טכניקת 'ריפריים' (Reframing) ומתי משתמשים בה?", a: "ריפריים הוא שינוי ההקשר או המשמעות שניתנים לחוויה מסוימת, מבלי לשנות את העובדות עצמן. משתמשים בה כשלקוח תקוע בפרשנות אחת ונוקשה של אירוע ומוכן לבחון זווית נוספת." },
+        { q: "מה ההבדל בין אמונה לעובדה, ולמה זה חשוב להבהיר ללקוח?", a: "עובדה ניתנת לאימות חיצוני ואובייקטיבי; אמונה היא פרשנות פנימית שהפכה למוחזקת כאמת. הבהרת ההבדל פותחת מרחב לבחון את האמונה כבחירה - ולא כגזירת גורל." }
+      ]
+    },
+    {
+      id: "topic-resources",
+      title: "גיוס משאבים פנימיים",
+      subtitle: "חיבור הלקוח ליכולות וניסיון קודם",
+      questions: [
+        { q: "מהי 'עגינה' (Anchoring) וכיצד היא משמשת לגיוס משאבים?", a: "עגינה היא קישור בין מצב פנימי (למשל ביטחון עצמי) לטריגר חושי (מגע, מילה, תנועה). לאחר שנוצר הקשר, הפעלת הטריגר מסייעת ללקוח לשחזר את המצב המשאבי במצבים מאתגרים." },
+        { q: "איך עוזרים ללקוח לזהות משאב מניסיון עבר?", a: "שואלים על מצב קודם שבו התמודד/ה בהצלחה עם אתגר דומה: 'ספר/י לי על פעם שבה הצלחת להתמודד עם משהו דומה - מה עשית אז שעבד?' זה מחזיר תחושת מסוגלות מבוססת ניסיון אמיתי." },
+        { q: "מהו 'מצב משאבי' ולמה הוא חשוב לפני עבודה על אתגר?", a: "מצב משאבי הוא מצב פנימי של יכולת, רוגע וביטחון. כניסה למצב הזה לפני התמודדות עם אתגר מרחיבה את טווח האפשרויות שהלקוח רואה, ומפחיתה תגובתיות אוטומטית." }
+      ]
+    }
+  ],
+  questionCategories: [
+    "בירור המטרה",
+    "המצב הקיים",
+    "נקודת מבט",
+    "משאבים",
+    "אמונות",
+    "ערכים",
+    "מוטיבציה",
+    "המצב הרצוי"
+  ],
+  coachingQuestions: [
+    { id: "q1", category: "בירור המטרה", text: "מה בדיוק היית רוצה שיקרה, באופן ספציפי?", context: "בתחילת מפגש, כדי לעבור מתלונה כללית למטרה מוגדרת." },
+    { id: "q2", category: "בירור המטרה", text: "איך תדע/י שהגעת בדיוק לאן שרצית להגיע?", context: "עוזרת להגדיר קריטריון הצלחה מדיד וברור." },
+    { id: "q3", category: "בירור המטרה", text: "מה חשוב לך להשיג מהשיחה הזאת, כאן ועכשיו?", context: "ממקדת את המפגש הבודד, לא רק את התהליך הכולל." },
+    { id: "q4", category: "המצב הקיים", text: "איך נראה המצב כרגע, בפועל?", context: "פותחת תיאור עובדתי לפני מעבר לפרשנות או רגש." },
+    { id: "q5", category: "המצב הקיים", text: "מה כבר ניסית לעשות בנוגע לזה, ומה קרה?", context: "מונעת הצעת פתרון שכבר נוסה וכשל." },
+    { id: "q6", category: "המצב הקיים", text: "מה בדיוק קורה כשהאתגר הזה מתעורר?", context: "מסייעת לאתר את הטריגר או ההקשר המדויק." },
+    { id: "q7", category: "נקודת מבט", text: "איך היית מתאר/ת את זה מנקודת המבט של מישהו אחר המעורב?", context: "מרחיבה את התמונה כשהלקוח תקוע בפרשנות יחידה." },
+    { id: "q8", category: "נקודת מבט", text: "אם היית צופה מהצד בסיטואציה הזו, מה היית שם לב אליו?", context: "יוצרת מרחק תצפיתי ומפחיתה מעורבות רגשית זמנית." },
+    { id: "q9", category: "נקודת מבט", text: "איך תיראה הסיטואציה הזו בעוד חמש שנים?", context: "מזמינה פרספקטיבת זמן ארוכה טווח." },
+    { id: "q10", category: "משאבים", text: "מה יש לך כבר עכשיו שיכול לעזור לך להתקדם?", context: "מפנה תשומת לב למשאבים קיימים לפני חיפוש חיצוני." },
+    { id: "q11", category: "משאבים", text: "מתי הצלחת להתמודד עם משהו דומה בעבר?", context: "מגייסת ניסיון עבר מוצלח כעדות ליכולת." },
+    { id: "q12", category: "משאבים", text: "מי יכול לתמוך בך בתהליך הזה?", context: "מזהה משאבי תמיכה חיצוניים, אנושיים." },
+    { id: "q13", category: "אמונות", text: "מה אתה/את אומר/ת לעצמך על היכולת שלך להתמודד עם זה?", context: "חושפת דיאלוג פנימי שעשוי להזין אמונה מגבילה." },
+    { id: "q14", category: "אמונות", text: "איזו הנחה נסתרת עשויה לעמוד מאחורי הקושי הזה?", context: "טובה לשימוש כשהלקוח חוזר על אותו דפוס שוב ושוב." },
+    { id: "q15", category: "אמונות", text: "מה היית חושב/ת על זה אילו לא היה שום סיכון בטעות?", context: "מסירה זמנית את גורם הפחד כדי לחשוף רצון אמיתי." },
+    { id: "q16", category: "ערכים", text: "למה זה כל כך חשוב לך?", context: "חושפת ערך עומק מאחורי מטרה או קושי." },
+    { id: "q17", category: "ערכים", text: "אילו ערכים באים לידי ביטוי - או נפגעים - במצב הזה?", context: "שימושית כשיש קונפליקט פנימי או החלטה קשה." },
+    { id: "q18", category: "מוטיבציה", text: "מה יקרה אם תשיג/י את זה? ומה יקרה אם לא?", context: "בודקת עלות-תועלת ומחזקת מוטיבציה לפעולה." },
+    { id: "q19", category: "מוטיבציה", text: "מה יעזור לך לשמור על המומנטום גם ברגעים קשים?", context: "מתאימה לקראת סיום מפגש, לפני יישום בשטח." },
+    { id: "q20", category: "המצב הרצוי", text: "איך ייראה, יישמע וירגיש היום שבו הגעת למטרה שלך?", context: "מחברת לחוויה חושית מלאה של התוצאה הרצויה." }
+  ],
+  clientScenarios: [
+    {
+      id: "scenario-career",
+      title: "תקיעות בקריירה",
+      summary: "לקוח/ה בת 34, עובד/ת בתפקיד ניהולי כבר חמש שנים, מרגיש/ה 'תקוע/ה' ולא בטוח/ה אם להישאר, להתקדם או לעבור תחום לגמרי.",
+      clientQuote: "אני כבר חמש שנים באותו מקום, ולא יודע/ת אם להישאר, לקדם את עצמי או לברוח מפה לגמרי.",
+      tags: ["קריירה", "החלטות", "ערכים"],
+      guidance: {
+        explore: ["מה בדיוק גורם לתחושת התקיעות - המשימות, הסביבה, או חוסר כיוון ברור?", "האם הרצון לשינוי מגיע מבריחה ממשהו או מכיוון אליו?"],
+        possibleQuestions: ["מה בתפקיד הנוכחי עדיין נותן לך משהו שחשוב לך?", "אם לא היה פחד מטעות, מה היית בוחר/ת לעשות?", "איך תיראה קריירה שמרגישה נכונה עבורך בעוד שלוש שנים?"],
+        thinkingDirections: ["לבדוק הלימה בין הערכים המקצועיים להיום-יומי בפועל", "להבחין בין 'תקוע/ה במקום' לבין 'תקוע/ה בהחלטה'"],
+        watchFor: ["שפה של חוסר אונים ('אין לי ברירה') - עשויה להצביע על אמונה מגבילה", "הימנעות מדיבור ישיר על כסף או ביטחון תעסוקתי כשמדברים על 'שינוי'"]
+      }
+    },
+    {
+      id: "scenario-relationship",
+      title: "קושי בתקשורת זוגית",
+      summary: "לקוח/ה מתאר/ת ויכוחים חוזרים עם בן/בת הזוג סביב אותו נושא, ומרגיש/ה ש'לא משנה מה אני אומר/ת, זה תמיד נגמר אותו דבר'.",
+      clientQuote: "לא משנה מה אני אומר/ת, זה תמיד נגמר באותו ויכוח. אני כבר לא יודע/ת אם יש טעם לדבר על זה בכלל.",
+      tags: ["זוגיות", "תקשורת", "דפוסים"],
+      guidance: {
+        explore: ["מה קורה בדיוק ברגע שבו הוויכוח 'מתלקח'?", "האם יש דפוס חוזר בתזמון, בטריגר או בתגובה?"],
+        possibleQuestions: ["מה היית רוצה שיקרה אחרת, באופן ספציפי, בפעם הבאה שזה עולה?", "מה, לדעתך, בן/בת הזוג מנסה להגיד כשזה קורה?", "מה מונע ממך לומר את זה בצורה ישירה יותר?"],
+        thinkingDirections: ["לבחון האם מדובר בבעיה נקודתית או בדפוס אינטראקציה קבוע", "לשקול הזמנה לפרספקטיבה של הצד השני, בזהירות ובלי לשפוט"],
+        watchFor: ["האשמה חוזרת כלפי הצד השני מבלי לקיחת אחריות על החלק העצמי", "רגש עז שדורש קודם הכלה, לפני מעבר לחקירה או פתרון"]
+      }
+    },
+    {
+      id: "scenario-confidence",
+      title: "חוסר ביטחון לפני צעד משמעותי",
+      summary: "לקוח/ה עומד/ת בפני הרצאה חשובה או ראיון עבודה בעוד שבוע, ומדווח/ת על מחשבות כמו 'אני לא באמת מספיק/ה טוב/ה בשביל זה'.",
+      clientQuote: "בעוד שבוע יש לי את הראיון הזה, ומשהו בי כל הזמן חושב - אני לא באמת מספיק/ה טוב/ה בשביל זה.",
+      tags: ["ביטחון עצמי", "חשיבה", "משאבים"],
+      guidance: {
+        explore: ["מאיפה מגיעה ההשוואה או אמת המידה שמולה הלקוח בודק/ת את עצמו/ה?", "האם זו תחושה חדשה או דפוס מוכר במצבים דומים?"],
+        possibleQuestions: ["מתי הרגשת בטוח/ה ביכולות שלך בהקשר דומה?", "מה היית אומר/ת לחבר/ה טוב/ה שהיה/הייתה במצב הזה?", "מה כבר יודע/ת לעשות שיכול לתמוך בך כאן?"],
+        thinkingDirections: ["לגייס עדות ומשאבים מניסיון עבר לפני עבודה על האמונה עצמה", "לבדוק אם יש כאן ריפריים אפשרי בין 'חשיפה' לבין 'הזדמנות'"],
+        watchFor: ["ביקורת עצמית קשה שמוצגת כ'עובדה' ולא כדעה", "צורך להאט את הקצב אם עולה חרדה משמעותית"]
+      }
+    }
+  ]
+};
+var GUIDANCE_LABELS = {
+  explore: "מה אפשר לברר",
+  possibleQuestions: "שאלות אפשריות",
+  thinkingDirections: "כיווני חשיבה",
+  watchFor: "למה לשים לב"
+};
+
+// ../../../../../../home/claude/nlp-coach/js/backend-local.js
+var K = {
+  state: "nlp.demo.state",
+  notes: "nlp.demo.notes",
+  journal: "nlp.demo.journal",
+  allowed: "nlp.demo.allowed",
+  requests: "nlp.demo.requests",
+  content: "nlp.demo.content"
+};
+var DEMO_USER = {
+  uid: "demo",
+  email: "demo@example.com",
+  name: "משתמש/ת הדגמה",
+  photo: ""
+};
+function read(key, fallback) {
+  try {
+    const raw = localStorage.getItem(key);
+    return raw ? JSON.parse(raw) : fallback;
+  } catch (e) {
+    return fallback;
+  }
+}
+function write(key, value) {
+  try {
+    localStorage.setItem(key, JSON.stringify(value));
+  } catch (e) {
+    console.warn("לא ניתן לשמור בדפדפן", e);
+  }
+}
+function seed() {
+  if (!read(K.allowed, null)) {
+    write(K.allowed, [
+      { email: DEMO_USER.email, role: "admin", addedAt: Date.now(), note: "חשבון ההדגמה" }
+    ]);
+  }
+  if (!read(K.requests, null)) {
+    write(K.requests, [
+      { uid: "sample-request", email: "student@example.com", name: "תלמיד/ה לדוגמה", requestedAt: Date.now() - 36e5 }
+    ]);
+  }
+}
+function createLocalBackend() {
+  seed();
+  let user = null;
+  let onAuth2 = () => {
+  };
+  return {
+    mode: "demo",
+    async init(callback) {
+      onAuth2 = callback;
+      user = read("nlp.demo.signedOut", false) ? null : DEMO_USER;
+      onAuth2(user);
+    },
+    async signIn() {
+      write("nlp.demo.signedOut", false);
+      user = DEMO_USER;
+      onAuth2(user);
+    },
+    async signOut() {
+      write("nlp.demo.signedOut", true);
+      user = null;
+      onAuth2(null);
+    },
+    async getAccess(u) {
+      const found = read(K.allowed, []).find((a) => a.email === u.email.toLowerCase());
+      return found ? { role: found.role } : null;
+    },
+    async hasRequested(u) {
+      return read(K.requests, []).some((r) => r.uid === u.uid);
+    },
+    async requestAccess(u) {
+      const list = read(K.requests, []).filter((r) => r.uid !== u.uid);
+      list.push({ uid: u.uid, email: u.email.toLowerCase(), name: u.name, requestedAt: Date.now() });
+      write(K.requests, list);
+    },
+    async getContent() {
+      return read(K.content, null);
+    },
+    async saveContent(content) {
+      write(K.content, content);
+    },
+    async loadState(uid) {
+      return read(K.state, null);
+    },
+    async saveState(uid, state) {
+      write(K.state, state);
+    },
+    async listNotes(uid) {
+      return read(K.notes, {});
+    },
+    async setNote(uid, key, text) {
+      const notes = read(K.notes, {});
+      if (text.trim()) notes[key] = { text, updatedAt: Date.now() };
+      else delete notes[key];
+      write(K.notes, notes);
+    },
+    async listJournal(uid) {
+      return read(K.journal, []).sort((a, b) => b.createdAt - a.createdAt);
+    },
+    async addJournal(uid, entry) {
+      const list = read(K.journal, []);
+      list.push({ id: "j" + Date.now(), ...entry, createdAt: Date.now() });
+      write(K.journal, list);
+    },
+    async deleteJournal(uid, id) {
+      write(K.journal, read(K.journal, []).filter((e) => e.id !== id));
+    },
+    // ---------- ניהול ----------
+    async listAllowed() {
+      return read(K.allowed, []).sort((a, b) => a.email.localeCompare(b.email));
+    },
+    async addAllowed(emails, role) {
+      const list = read(K.allowed, []);
+      emails.forEach((email) => {
+        const existing = list.find((a) => a.email === email);
+        if (existing) existing.role = role;
+        else list.push({ email, role, addedAt: Date.now(), note: "" });
+      });
+      write(K.allowed, list);
+    },
+    async removeAllowed(email) {
+      write(K.allowed, read(K.allowed, []).filter((a) => a.email !== email));
+    },
+    async listRequests() {
+      return read(K.requests, []).sort((a, b) => b.requestedAt - a.requestedAt);
+    },
+    async approveRequest(req) {
+      await this.addAllowed([req.email], "student");
+      await this.rejectRequest(req.uid);
+    },
+    async rejectRequest(uid) {
+      write(K.requests, read(K.requests, []).filter((r) => r.uid !== uid));
+    },
+    async listUsers() {
+      const state = read(K.state, null);
+      return state ? [{ uid: DEMO_USER.uid, ...state }] : [];
+    },
+    async getUserNotes(uid) {
+      return this.listNotes(uid);
+    },
+    async getUserJournal(uid) {
+      return this.listJournal(uid);
+    }
+  };
+}
+
+// ../../../../../../home/claude/nlp-coach/js/dom.js
+function h(tag, attrs, ...children) {
+  const el = document.createElement(tag);
+  if (attrs) {
+    for (const [k, v] of Object.entries(attrs)) {
+      if (v === null || v === void 0 || v === false) continue;
+      if (k.startsWith("on") && typeof v === "function") el.addEventListener(k.slice(2), v);
+      else if (k === "class") el.className = v;
+      else if (k === "value") el.value = v;
+      else if (k === "checked") el.checked = !!v;
+      else if (k === "style" && typeof v === "object") Object.assign(el.style, v);
+      else el.setAttribute(k, v === true ? "" : v);
+    }
+  }
+  append(el, children);
+  return el;
+}
+function append(el, children) {
+  for (const c of children) {
+    if (c === null || c === void 0 || c === false) continue;
+    if (Array.isArray(c)) append(el, c);
+    else if (c instanceof Node) el.appendChild(c);
+    else el.appendChild(document.createTextNode(String(c)));
+  }
+}
+var SVG_NS = "http://www.w3.org/2000/svg";
+var ICONS = {
+  search: ["M10 3a7 7 0 1 0 0 14a7 7 0 1 0 0 -14", "M21 21l-6 -6"],
+  bookmark: ["M18 7v14l-6 -4l-6 4v-14a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4z"],
+  copy: ["M8 8m0 2a2 2 0 0 1 2 -2h8a2 2 0 0 1 2 2v8a2 2 0 0 1 -2 2h-8a2 2 0 0 1 -2 -2z", "M16 8v-2a2 2 0 0 0 -2 -2h-8a2 2 0 0 0 -2 2v8a2 2 0 0 0 2 2h2"],
+  share: ["M6 9a3 3 0 1 0 0 6a3 3 0 1 0 0 -6", "M18 3a3 3 0 1 0 0 6a3 3 0 1 0 0 -6", "M18 15a3 3 0 1 0 0 6a3 3 0 1 0 0 -6", "M8.7 10.7l6.6 -3.4", "M8.7 13.3l6.6 3.4"],
+  x: ["M18 6l-12 12", "M6 6l12 12"],
+  chevronStart: ["M9 6l6 6l-6 6"],
+  chevronEnd: ["M15 6l-6 6l6 6"],
+  play: ["M7 4v16l13 -8z"],
+  trash: ["M4 7h16", "M10 11v6", "M14 11v6", "M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12", "M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3"],
+  pencil: ["M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4", "M13.5 6.5l4 4"],
+  check: ["M5 12l5 5l10 -10"],
+  plus: ["M12 5v14", "M5 12h14"],
+  up: ["M6 15l6 -6l6 6"],
+  down: ["M6 9l6 6l6 -6"]
+};
+function icon(name, { size = 20, filled = false } = {}) {
+  const svg = document.createElementNS(SVG_NS, "svg");
+  svg.setAttribute("viewBox", "0 0 24 24");
+  svg.setAttribute("width", size);
+  svg.setAttribute("height", size);
+  svg.setAttribute("fill", filled ? "currentColor" : "none");
+  svg.setAttribute("stroke", "currentColor");
+  svg.setAttribute("stroke-width", "1.75");
+  svg.setAttribute("stroke-linecap", "round");
+  svg.setAttribute("stroke-linejoin", "round");
+  svg.setAttribute("aria-hidden", "true");
+  (ICONS[name] || []).forEach((d) => {
+    const p = document.createElementNS(SVG_NS, "path");
+    p.setAttribute("d", d);
+    svg.appendChild(p);
+  });
+  return svg;
+}
+function googleLogo() {
+  const svg = document.createElementNS(SVG_NS, "svg");
+  svg.setAttribute("viewBox", "0 0 48 48");
+  svg.setAttribute("class", "google-g");
+  svg.setAttribute("aria-hidden", "true");
+  [
+    ["#FFC107", "M43.6 20.1H42V20H24v8h11.3C33.7 32.7 29.2 36 24 36c-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.8 1.2 7.9 3.1l5.7-5.7C34 6.1 29.3 4 24 4 12.9 4 4 12.9 4 24s8.9 20 20 20 20-8.9 20-20c0-1.3-.1-2.6-.4-3.9z"],
+    ["#FF3D00", "M6.3 14.7l6.6 4.8C14.7 15.1 19 12 24 12c3.1 0 5.8 1.2 7.9 3.1l5.7-5.7C34 6.1 29.3 4 24 4 16.3 4 9.7 8.3 6.3 14.7z"],
+    ["#4CAF50", "M24 44c5.2 0 9.9-2 13.4-5.2l-6.2-5.2C29.2 35.1 26.7 36 24 36c-5.2 0-9.6-3.3-11.3-8l-6.5 5C9.5 39.6 16.2 44 24 44z"],
+    ["#1976D2", "M43.6 20.1H42V20H24v8h11.3c-.8 2.2-2.2 4.2-4.1 5.6l6.2 5.2C37 39.2 44 34 44 24c0-1.3-.1-2.6-.4-3.9z"]
+  ].forEach(([fill, d]) => {
+    const p = document.createElementNS(SVG_NS, "path");
+    p.setAttribute("fill", fill);
+    p.setAttribute("d", d);
+    svg.appendChild(p);
+  });
+  return svg;
+}
+var toastTimer;
+function toast(message) {
+  document.querySelectorAll(".toast").forEach((t) => t.remove());
+  const el = h("div", { class: "toast", role: "status" }, message);
+  document.body.appendChild(el);
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => el.remove(), 2400);
+}
+function modal(title, body) {
+  const prevFocus = document.activeElement;
+  const close = () => {
+    scrim.remove();
+    document.removeEventListener("keydown", onKey);
+    if (prevFocus && prevFocus.focus) prevFocus.focus();
+  };
+  const onKey = (e) => {
+    if (e.key === "Escape") close();
+  };
+  const box = h(
+    "div",
+    { class: "modal", role: "dialog", "aria-modal": "true", "aria-label": title },
+    h("h2", null, title),
+    body(close)
+  );
+  const scrim = h("div", { class: "modal-scrim", onclick: (e) => {
+    if (e.target === scrim) close();
+  } }, box);
+  document.body.appendChild(scrim);
+  document.addEventListener("keydown", onKey);
+  const first = box.querySelector("input, textarea, select, button");
+  if (first) first.focus();
+  return close;
+}
+function confirmDialog(title, message, actionLabel, { danger = false } = {}) {
+  return new Promise((resolve) => {
+    modal(title, (close) => [
+      h("p", { class: "muted" }, message),
+      h(
+        "div",
+        { class: "btn-row", style: { marginTop: "20px" } },
+        h("button", { class: "btn", onclick: () => {
+          close();
+          resolve(false);
+        } }, "ביטול"),
+        h("button", { class: danger ? "btn btn-danger" : "btn btn-primary", onclick: () => {
+          close();
+          resolve(true);
+        } }, actionLabel)
+      )
+    ]);
+  });
+}
+async function copyText(text) {
+  try {
+    await navigator.clipboard.writeText(text);
+  } catch (e) {
+    const ta = h("textarea", { style: { position: "fixed", opacity: "0" } });
+    ta.value = text;
+    document.body.appendChild(ta);
+    ta.select();
+    document.execCommand("copy");
+    ta.remove();
+  }
+  toast("הועתק");
+}
+async function shareText(text) {
+  if (navigator.share) {
+    try {
+      await navigator.share({ text });
+    } catch (e) {
+    }
+  } else {
+    copyText(text);
+  }
+}
+function formatDate(ms) {
+  if (!ms) return "";
+  return new Date(ms).toLocaleDateString("he-IL", { day: "numeric", month: "long", year: "numeric" });
+}
+function initials(name) {
+  const parts = (name || "").trim().split(/\s+/).filter(Boolean);
+  if (!parts.length) return "?";
+  return (parts[0][0] + (parts[1] ? parts[1][0] : "")).toUpperCase();
+}
+
+// ../../../../../../home/claude/nlp-coach/js/store.js
+var DAY = 864e5;
+var INTERVALS = [1, 3, 7, 16, 35];
+function defaultState(user) {
+  return {
+    profile: { name: user?.name || "", email: user?.email || "", photo: user?.photo || "" },
+    favorites: [],
+    completedTopics: [],
+    cards: {},
+    practicedScenarios: [],
+    prefs: { theme: "auto", font: "md" },
+    createdAt: Date.now(),
+    lastSeen: Date.now()
+  };
+}
+function normalizeState(raw, user) {
+  const base = defaultState(user);
+  if (!raw || typeof raw !== "object") return base;
+  const arr = (v) => Array.isArray(v) ? v : [];
+  return {
+    profile: { ...base.profile, ...raw.profile || {}, ...user ? { name: user.name, email: user.email, photo: user.photo } : {} },
+    favorites: arr(raw.favorites),
+    completedTopics: arr(raw.completedTopics),
+    cards: raw.cards && typeof raw.cards === "object" ? raw.cards : {},
+    practicedScenarios: arr(raw.practicedScenarios),
+    prefs: { ...base.prefs, ...raw.prefs || {} },
+    createdAt: raw.createdAt || base.createdAt,
+    lastSeen: Date.now()
+  };
+}
+function importLegacy(state) {
+  try {
+    const raw = localStorage.getItem("nlpCoachCompanionState");
+    if (!raw) return false;
+    const old = JSON.parse(raw);
+    const add = (arr, items) => (items || []).forEach((i) => {
+      if (!arr.includes(i)) arr.push(i);
+    });
+    add(state.favorites, old.favorites);
+    add(state.completedTopics, old.completedTopics);
+    add(state.practicedScenarios, old.practicedScenarios);
+    (old.viewedQuestions || []).forEach((k) => {
+      if (!state.cards[k]) state.cards[k] = { seen: true, known: false, box: 0, due: 0 };
+    });
+    localStorage.removeItem("nlpCoachCompanionState");
+    return true;
+  } catch (e) {
+    return false;
+  }
+}
+function cardKey(topicId, index) {
+  return topicId + "::" + index;
+}
+function markSeen(state, key) {
+  const c = state.cards[key] || { seen: false, known: false, box: 0, due: 0 };
+  c.seen = true;
+  state.cards[key] = c;
+}
+function grade(state, key, knew) {
+  const c = state.cards[key] || { seen: true, known: false, box: 0, due: 0 };
+  c.seen = true;
+  if (knew) {
+    c.box = Math.min((c.box || 0) + 1, INTERVALS.length);
+    c.known = true;
+    c.due = Date.now() + INTERVALS[c.box - 1] * DAY;
+  } else {
+    c.box = 0;
+    c.known = false;
+    c.due = Date.now();
+  }
+  c.last = Date.now();
+  state.cards[key] = c;
+}
+function topicProgress(state, topic) {
+  let known = 0, seen = 0;
+  topic.questions.forEach((_, i) => {
+    const c = state.cards[cardKey(topic.id, i)];
+    if (c?.seen) seen++;
+    if (c?.known) known++;
+  });
+  return { known, seen, total: topic.questions.length };
+}
+function overallProgress(state, content) {
+  let known = 0, seen = 0, total = 0;
+  content.learningTopics.forEach((t) => {
+    const p = topicProgress(state, t);
+    known += p.known;
+    seen += p.seen;
+    total += p.total;
+  });
+  return { known, seen, total, pct: total ? Math.round(known / total * 100) : 0 };
+}
+function reviewQueue(state, content, topicId) {
+  const now = Date.now();
+  const items = [];
+  content.learningTopics.forEach((t) => {
+    if (topicId && t.id !== topicId) return;
+    t.questions.forEach((q, i) => {
+      const key = cardKey(t.id, i);
+      const c = state.cards[key];
+      let rank;
+      if (c?.seen && !c.known) rank = 0;
+      else if (!c?.seen) rank = 1;
+      else if (c.due <= now) rank = 2;
+      else return;
+      items.push({ key, topic: t, q, rank, due: c?.due || 0 });
+    });
+  });
+  items.sort((a, b) => a.rank - b.rank || a.due - b.due);
+  return items;
+}
+function toggle(arr, id) {
+  const i = arr.indexOf(id);
+  if (i === -1) arr.push(id);
+  else arr.splice(i, 1);
+  return i === -1;
+}
+function applyPrefs(prefs) {
+  const root2 = document.documentElement;
+  if (prefs.theme === "light" || prefs.theme === "dark") root2.dataset.theme = prefs.theme;
+  else delete root2.dataset.theme;
+  if (prefs.font === "sm" || prefs.font === "lg") root2.dataset.font = prefs.font;
+  else delete root2.dataset.font;
+  try {
+    localStorage.setItem("nlp.prefs", JSON.stringify(prefs));
+  } catch (e) {
+  }
+}
+
+// ../../../../../../home/claude/nlp-coach/js/search.js
+var FINALS = { "ך": "כ", "ם": "מ", "ן": "נ", "ף": "פ", "ץ": "צ" };
+var DROP = /[֑-ׇ'"׳״\-–—,.?!:;()/\\[\]]/;
+function normalizeWithMap(str, skeleton) {
+  let out = "";
+  const map = [];
+  let lastSpace = true;
+  for (let i = 0; i < str.length; i++) {
+    let ch = str[i];
+    if (DROP.test(ch)) continue;
+    if (/\s/.test(ch)) {
+      if (lastSpace) continue;
+      out += " ";
+      map.push(i);
+      lastSpace = true;
+      continue;
+    }
+    ch = FINALS[ch] || ch.toLowerCase();
+    if (skeleton && (ch === "ו" || ch === "י")) continue;
+    out += ch;
+    map.push(i);
+    lastSpace = false;
+  }
+  return { s: out, map };
+}
+function findWord(text, word, skeleton) {
+  const T = normalizeWithMap(text, skeleton);
+  const W = normalizeWithMap(word, skeleton).s.trim();
+  if (!W) return [];
+  const ranges = [];
+  let from = 0;
+  let idx;
+  while ((idx = T.s.indexOf(W, from)) !== -1) {
+    const start = T.map[idx];
+    const end = T.map[idx + W.length - 1] + 1;
+    ranges.push([start, end]);
+    from = idx + W.length;
+  }
+  return ranges;
+}
+function matchText(text, term) {
+  const words = term.trim().split(/\s+/).filter(Boolean);
+  if (!words.length) return [];
+  let all = [];
+  for (const w of words) {
+    let r = findWord(text, w, false);
+    if (!r.length) r = findWord(text, w, true);
+    if (!r.length) return null;
+    all = all.concat(r);
+  }
+  return all;
+}
+function matchFields(fields, term) {
+  const words = term.trim().split(/\s+/).filter(Boolean);
+  const result = fields.map(() => []);
+  for (const w of words) {
+    let found = false;
+    fields.forEach((f, i) => {
+      const r = matchText(f || "", w);
+      if (r && r.length) {
+        result[i] = result[i].concat(r);
+        found = true;
+      }
+    });
+    if (!found) return null;
+  }
+  return result;
+}
+function highlight(text, ranges) {
+  if (!ranges || !ranges.length) return [text];
+  const sorted = ranges.slice().sort((a, b) => a[0] - b[0]);
+  const merged = [];
+  for (const r of sorted) {
+    const last = merged[merged.length - 1];
+    if (last && r[0] <= last[1]) last[1] = Math.max(last[1], r[1]);
+    else merged.push([r[0], r[1]]);
+  }
+  const out = [];
+  let pos = 0;
+  for (const [s, e] of merged) {
+    if (s > pos) out.push(text.slice(pos, s));
+    out.push(h("mark", null, text.slice(s, e)));
+    pos = e;
+  }
+  if (pos < text.length) out.push(text.slice(pos));
+  return out;
+}
+
+// ../../../../../../home/claude/nlp-coach/js/views.js
+function pageHead(title, meta) {
+  return h("div", { class: "page-head" }, h("h1", null, title), meta ? h("span", { class: "meta" }, meta) : null);
+}
+function back(href, label) {
+  return h("a", { class: "back", href }, icon("chevronStart", { size: 16 }), label);
+}
+function bar(value, total) {
+  const pct = total ? Math.round(value / total * 100) : 0;
+  return h(
+    "div",
+    { class: "bar", role: "progressbar", "aria-valuemin": "0", "aria-valuemax": "100", "aria-valuenow": pct },
+    h("span", { style: { width: pct + "%" } })
+  );
+}
+function empty(message, actionLabel, href) {
+  return h("div", { class: "empty" }, h("p", null, message), actionLabel ? h("a", { class: "btn", href }, actionLabel) : null);
+}
+function firstName(ctx2) {
+  return (ctx2.state.profile.name || "").split(" ")[0];
+}
+function noteBox(ctx2, key, label) {
+  const existing = ctx2.notes[key]?.text || "";
+  let saved2 = existing;
+  const ta = h("textarea", { "aria-label": label, placeholder: "מה חשוב לך לזכור כאן?" });
+  ta.value = existing;
+  const status = h("span", null);
+  const commit = async () => {
+    if (ta.value === saved2) return;
+    saved2 = ta.value;
+    await ctx2.setNote(key, ta.value);
+    status.textContent = ta.value.trim() ? " נשמר." : " ההערה נמחקה.";
+  };
+  ta.addEventListener("blur", commit);
+  return h(
+    "div",
+    { class: "note-box" },
+    h("label", { class: "small", style: { fontWeight: "500", display: "block", marginBottom: "6px" } }, label),
+    ta,
+    h("div", { class: "hint" }, "ההערות שלך גלויות גם למנהל/ת הקורס.", status)
+  );
+}
+function questionRow(ctx2, q, { ranges = [[], []], onChange } = {}) {
+  const noteKey = "q:" + q.id;
+  const li = h("li");
+  let editing = false;
+  const draw = () => {
+    const fav = ctx2.state.favorites.includes(q.id);
+    li.replaceChildren(
+      h(
+        "div",
+        { class: "row" },
+        h(
+          "div",
+          { class: "row-main" },
+          h("div", { class: "row-title" }, highlight(q.text, ranges[0])),
+          q.context ? h("div", { class: "row-sub" }, highlight(q.context, ranges[1])) : null,
+          !editing && ctx2.notes[noteKey]?.text ? h("div", { class: "note-preview" }, ctx2.notes[noteKey].text) : null,
+          editing ? noteBox(ctx2, noteKey, "הערה אישית לשאלה") : null
+        ),
+        h("span", { class: "row-side" }, q.category),
+        h(
+          "div",
+          { class: "row-actions" },
+          h("button", {
+            class: "icon-btn",
+            "aria-pressed": fav ? "true" : "false",
+            "aria-label": fav ? "הסרה מהשמורים" : "שמירה",
+            title: fav ? "הסרה מהשמורים" : "שמירה",
+            onclick: () => {
+              const added = toggle(ctx2.state.favorites, q.id);
+              ctx2.saveSoon();
+              toast(added ? "נשמר" : "הוסר מהשמורים");
+              if (onChange) onChange();
+              else draw();
+            }
+          }, icon("bookmark", { filled: fav })),
+          h("button", { class: "icon-btn", "aria-label": "העתקה", title: "העתקה", onclick: () => copyText(q.text) }, icon("copy")),
+          h("button", { class: "icon-btn", "aria-label": "שיתוף", title: "שיתוף", onclick: () => shareText(q.text) }, icon("share")),
+          h("button", {
+            class: "icon-btn",
+            "aria-pressed": editing ? "true" : "false",
+            "aria-label": "הערה אישית",
+            title: "הערה אישית",
+            onclick: () => {
+              editing = !editing;
+              draw();
+              if (editing) li.querySelector("textarea")?.focus();
+            }
+          }, icon("pencil"))
+        )
+      )
+    );
+  };
+  draw();
+  return li;
+}
+function openSession(ctx2, questions2, start = 0) {
+  if (!questions2.length) return;
+  let i = start;
+  const prevFocus = document.activeElement;
+  const cat = h("div", { class: "session-cat" });
+  const q = h("div", { class: "session-q" });
+  const c = h("div", { class: "session-ctx" });
+  const counter = h("span");
+  const progress = h("span");
+  const barEl = h("div", { class: "bar" }, progress);
+  const favBtn = h("button", { class: "icon-btn", onclick: () => {
+    toggle(ctx2.state.favorites, questions2[i].id);
+    ctx2.saveSoon();
+    draw();
+  } });
+  const draw = () => {
+    const item = questions2[i];
+    cat.textContent = item.category;
+    q.textContent = item.text;
+    c.textContent = item.context || "";
+    counter.textContent = `⁦${i + 1} / ${questions2.length}⁩`;
+    progress.style.width = (i + 1) / questions2.length * 100 + "%";
+    const fav = ctx2.state.favorites.includes(item.id);
+    favBtn.setAttribute("aria-pressed", fav ? "true" : "false");
+    favBtn.setAttribute("aria-label", fav ? "הסרה מהשמורים" : "שמירה");
+    favBtn.replaceChildren(icon("bookmark", { filled: fav, size: 22 }));
+  };
+  const go = (d) => {
+    i = Math.max(0, Math.min(questions2.length - 1, i + d));
+    draw();
+  };
+  const close = () => {
+    el.remove();
+    document.removeEventListener("keydown", onKey);
+    document.body.style.overflow = "";
+    if (prevFocus?.focus) prevFocus.focus();
+  };
+  const onKey = (e) => {
+    if (e.key === "Escape") close();
+    else if (e.key === "ArrowLeft" || e.key === " ") {
+      e.preventDefault();
+      go(1);
+    } else if (e.key === "ArrowRight") go(-1);
+  };
+  const body = h("div", { class: "session-body" }, cat, q, c);
+  let startX = null;
+  body.addEventListener("touchstart", (e) => {
+    startX = e.touches[0].clientX;
+  }, { passive: true });
+  body.addEventListener("touchend", (e) => {
+    if (startX === null) return;
+    const dx = e.changedTouches[0].clientX - startX;
+    if (Math.abs(dx) > 50) go(dx > 0 ? 1 : -1);
+    startX = null;
+  });
+  const el = h(
+    "div",
+    { class: "session", role: "dialog", "aria-modal": "true", "aria-label": "מצב מפגש" },
+    h(
+      "div",
+      { class: "session-top" },
+      h("span", null, "מצב מפגש"),
+      h(
+        "div",
+        { class: "btn-row" },
+        favBtn,
+        h("button", { class: "icon-btn", "aria-label": "העתקה", onclick: () => copyText(questions2[i].text) }, icon("copy", { size: 22 })),
+        h("button", { class: "icon-btn", "aria-label": "סגירה", onclick: close }, icon("x", { size: 22 }))
+      )
+    ),
+    body,
+    h(
+      "div",
+      { class: "session-foot" },
+      h("button", { class: "icon-btn", "aria-label": "הקודמת", onclick: () => go(-1) }, icon("chevronStart", { size: 24 })),
+      barEl,
+      counter,
+      h("button", { class: "icon-btn", "aria-label": "הבאה", onclick: () => go(1) }, icon("chevronEnd", { size: 24 }))
+    )
+  );
+  document.body.appendChild(el);
+  document.body.style.overflow = "hidden";
+  document.addEventListener("keydown", onKey);
+  draw();
+  el.querySelector(".session-top .icon-btn:last-child").focus();
+}
+async function home(page, ctx2) {
+  const { content, state } = ctx2;
+  const prog = overallProgress(state, content);
+  const due = reviewQueue(state, content).length;
+  const noteCount = Object.keys(ctx2.notes).length;
+  const name = firstName(ctx2);
+  const lead = prog.total ? `ידעת ${prog.known} מתוך ${prog.total} שאלות החזרה. ` + (due ? `${due} מחכות לחזרה.` : "אין כרגע שאלות שמחכות לחזרה.") : "";
+  page.append(
+    h("h1", null, name ? `שלום, ${name}` : "שלום"),
+    h("p", { class: "lead", style: { marginTop: "8px" } }, lead),
+    h(
+      "div",
+      { class: "btn-row" },
+      due ? h("a", { class: "btn btn-primary", href: "#/review/flash" }, `המשך לחזור (${due})`) : h("a", { class: "btn btn-primary", href: "#/review" }, "לנושאי החזרה"),
+      h("button", {
+        class: "btn",
+        onclick: () => {
+          const saved2 = content.coachingQuestions.filter((q) => state.favorites.includes(q.id));
+          openSession(ctx2, saved2.length ? saved2 : content.coachingQuestions);
+        }
+      }, icon("play", { size: 16 }), "מצב מפגש"),
+      h("a", { class: "btn", href: "#/questions" }, icon("search", { size: 16 }), "חיפוש שאלה")
+    ),
+    h(
+      "section",
+      { class: "section" },
+      h("h2", null, "נושאי חזרה"),
+      h("ul", { class: "list" }, content.learningTopics.map((t) => {
+        const p = topicProgress(state, t);
+        return h("li", null, h(
+          "a",
+          { class: "row-link", href: "#/review/" + encodeURIComponent(t.id) },
+          h(
+            "div",
+            { class: "row-main" },
+            h("div", { class: "row-title" }, t.title, state.completedTopics.includes(t.id) ? h("span", { class: "qa-state known" }, "הושלם") : null),
+            h("div", { class: "row-sub" }, t.subtitle)
+          ),
+          h("div", { class: "bar-wrap" }, bar(p.known, p.total), h("div", { class: "small muted" }, `⁦${p.known} / ${p.total}⁩`))
+        ));
+      }))
+    ),
+    h(
+      "section",
+      { class: "section" },
+      h("h2", null, "בקיצור"),
+      h(
+        "div",
+        { class: "stats" },
+        stat(`⁦${prog.seen} / ${prog.total}⁩`, "שאלות חזרה שנצפו"),
+        stat(state.favorites.length, "שאלות שמורות"),
+        stat(`⁦${state.practicedScenarios.length} / ${content.clientScenarios.length}⁩`, "תרחישים שתורגלו"),
+        stat(noteCount, "הערות אישיות")
+      )
+    ),
+    h("p", { class: "small muted", style: { marginTop: "48px" } }, h("a", { href: "#/about" }, "אודות האתר"))
+  );
+}
+function stat(num, label) {
+  return h("div", { class: "stat" }, h("div", { class: "num" }, num), h("div", { class: "lbl" }, label));
+}
+var revealed = /* @__PURE__ */ new Set();
+async function review(page, ctx2) {
+  const sub = ctx2.route.parts[1];
+  if (sub === "flash") return flash(page, ctx2, ctx2.route.params.topic);
+  if (sub) return topicPage(page, ctx2, sub);
+  const { content, state } = ctx2;
+  const prog = overallProgress(state, content);
+  const due = reviewQueue(state, content).length;
+  page.append(
+    pageHead("חזרה", `⁦${state.completedTopics.length} / ${content.learningTopics.length}⁩ נושאים הושלמו`),
+    h("p", { class: "lead" }, "קרא/י את השאלה, נסה/י לענות בעצמך, ואז חשוף/חשפי את התשובה וסמן/י אם ידעת. שאלות שלא ידעת יחזרו מוקדם יותר."),
+    h(
+      "div",
+      { class: "btn-row", style: { marginBottom: "16px" } },
+      due ? h("a", { class: "btn btn-primary", href: "#/review/flash" }, `חזרה חכמה (${due})`) : h("span", { class: "muted small" }, "כל השאלות נלמדו. הן יחזרו כשיגיע זמנן."),
+      h("span", { class: "small muted" }, `ידעת ${prog.known} מתוך ${prog.total}`)
+    ),
+    h("ul", { class: "list" }, content.learningTopics.map((t) => {
+      const p = topicProgress(state, t);
+      return h("li", null, h(
+        "a",
+        { class: "row-link", href: "#/review/" + encodeURIComponent(t.id) },
+        h(
+          "div",
+          { class: "row-main" },
+          h("div", { class: "row-title" }, t.title, state.completedTopics.includes(t.id) ? h("span", { class: "qa-state known" }, "הושלם") : null),
+          h("div", { class: "row-sub" }, t.subtitle)
+        ),
+        h("div", { class: "bar-wrap" }, bar(p.known, p.total), h("div", { class: "small muted" }, `⁦${p.known} / ${p.total}⁩`)),
+        icon("chevronEnd", { size: 18 })
+      ));
+    }))
+  );
+}
+function topicPage(page, ctx2, topicId) {
+  const { content, state } = ctx2;
+  const topic = content.learningTopics.find((t) => t.id === topicId);
+  if (!topic) {
+    page.append(back("#/review", "כל הנושאים"), empty("הנושא לא נמצא.", "לנושאי החזרה", "#/review"));
+    return;
+  }
+  const p = topicProgress(state, topic);
+  const done = state.completedTopics.includes(topic.id);
+  const list = h("ul", { class: "list" });
+  const drawList = () => {
+    list.replaceChildren(...topic.questions.map((item, i) => {
+      const key = cardKey(topic.id, i);
+      const c = state.cards[key];
+      const isOpen = revealed.has(key);
+      const label = !c?.last ? null : c.known ? h("span", { class: "qa-state known" }, "ידעתי") : h("span", { class: "qa-state" }, "לא ידעתי");
+      return h(
+        "li",
+        { class: "qa" },
+        h("div", { class: "qa-q" }, item.q, label),
+        isOpen ? h("div", { class: "qa-a" }, item.a) : null,
+        h(
+          "div",
+          { class: "qa-tools" },
+          isOpen ? [
+            h("button", { class: "btn", onclick: () => {
+              grade(state, key, true);
+              revealed.delete(key);
+              ctx2.saveSoon();
+              drawList();
+            } }, icon("check", { size: 16 }), "ידעתי"),
+            h("button", { class: "btn", onclick: () => {
+              grade(state, key, false);
+              revealed.delete(key);
+              ctx2.saveSoon();
+              drawList();
+            } }, "לא ידעתי"),
+            h("button", { class: "btn btn-quiet", onclick: () => {
+              revealed.delete(key);
+              drawList();
+            } }, "הסתר תשובה")
+          ] : h("button", { class: "btn btn-quiet", onclick: () => {
+            revealed.add(key);
+            markSeen(state, key);
+            ctx2.saveSoon();
+            drawList();
+          } }, "הצג תשובה")
+        )
+      );
+    }));
+  };
+  drawList();
+  page.append(
+    back("#/review", "כל הנושאים"),
+    pageHead(topic.title, `ידעת ⁦${p.known} / ${p.total}⁩`),
+    h("p", { class: "lead" }, topic.subtitle),
+    h(
+      "div",
+      { class: "btn-row", style: { marginBottom: "8px" } },
+      h("a", { class: "btn btn-primary", href: "#/review/flash?topic=" + encodeURIComponent(topic.id) }, "תרגול כרטיסיות"),
+      h("button", {
+        class: "btn",
+        "aria-pressed": done ? "true" : "false",
+        onclick: () => {
+          toggle(state.completedTopics, topic.id);
+          ctx2.saveSoon();
+          ctx2.rerender();
+        }
+      }, done ? [icon("check", { size: 16 }), "הנושא הושלם"] : "סימון הנושא כהושלם")
+    ),
+    list,
+    h("section", { class: "section" }, noteBox(ctx2, "t:" + topic.id, "הערות שלי לנושא"))
+  );
+}
+function flash(page, ctx2, topicId) {
+  const { content, state } = ctx2;
+  const queue = reviewQueue(state, content, topicId).slice(0, 12);
+  const topic = topicId ? content.learningTopics.find((t) => t.id === topicId) : null;
+  const backHref = topic ? "#/review/" + encodeURIComponent(topic.id) : "#/review";
+  page.append(back(backHref, topic ? topic.title : "כל הנושאים"));
+  if (!queue.length) {
+    page.append(pageHead("חזרה חכמה"), empty("אין כרגע שאלות שמחכות לחזרה. שאלות שידעת יחזרו כשיגיע זמנן.", "לנושאי החזרה", "#/review"));
+    return;
+  }
+  let i = 0;
+  let knew = 0, didnt = 0;
+  const retried = /* @__PURE__ */ new Set();
+  const stage = h("div");
+  const meta = h("span", { class: "meta" });
+  page.append(h("div", { class: "page-head" }, h("h1", null, "חזרה חכמה"), meta), stage);
+  const drawCard = (open) => {
+    if (i >= queue.length) {
+      meta.textContent = "";
+      stage.replaceChildren(h(
+        "div",
+        { class: "flash" },
+        h("div", { class: "q" }, "סיימת את סבב החזרה"),
+        h("p", { class: "muted", style: { marginTop: "12px" } }, `ידעת ${knew}, לא ידעת ${didnt}.`),
+        h(
+          "div",
+          { class: "btn-row" },
+          h("a", { class: "btn btn-primary", href: backHref }, "חזרה לנושאים"),
+          h("button", { class: "btn", onclick: () => ctx2.rerender() }, "סבב נוסף")
+        )
+      ));
+      return;
+    }
+    const item = queue[i];
+    meta.textContent = `⁦${i + 1} / ${queue.length}⁩`;
+    stage.replaceChildren(h(
+      "div",
+      { class: "flash" },
+      h("div", { class: "cat" }, item.topic.title),
+      h("div", { class: "q" }, item.q.q),
+      open ? h("div", { class: "a" }, item.q.a) : null,
+      h(
+        "div",
+        { class: "btn-row" },
+        open ? [
+          h("button", { class: "btn btn-primary", onclick: () => answer(true) }, icon("check", { size: 16 }), "ידעתי"),
+          h("button", { class: "btn", onclick: () => answer(false) }, "לא ידעתי")
+        ] : h("button", { class: "btn btn-primary", onclick: () => {
+          markSeen(state, item.key);
+          drawCard(true);
+        } }, "הצג תשובה")
+      )
+    ));
+    stage.querySelector(".btn")?.focus();
+  };
+  const answer = (known) => {
+    const item = queue[i];
+    grade(state, item.key, known);
+    ctx2.saveSoon();
+    if (known) knew++;
+    else {
+      didnt++;
+      if (!retried.has(item.key)) {
+        retried.add(item.key);
+        queue.push(item);
+      }
+    }
+    i++;
+    drawCard(false);
+  };
+  drawCard(false);
+}
+async function questions(page, ctx2) {
+  const { content } = ctx2;
+  let term = ctx2.route.params.q || "";
+  let cat = ctx2.route.params.cat || "הכל";
+  if (cat !== "הכל" && !content.questionCategories.includes(cat)) cat = "הכל";
+  const list = h("ul", { class: "list" });
+  const filters = h("div", { class: "filters", role: "group", "aria-label": "סינון לפי קטגוריה" });
+  const input = h("input", { type: "search", placeholder: "חיפוש שאלה, מילה או נושא", "aria-label": "חיפוש שאלות" });
+  input.value = term;
+  const meta = h("span", { class: "meta" });
+  let current = [];
+  const syncUrl = () => {
+    const p = new URLSearchParams();
+    if (cat !== "הכל") p.set("cat", cat);
+    if (term.trim()) p.set("q", term.trim());
+    const qs = p.toString();
+    ctx2.replaceRoute("questions" + (qs ? "?" + qs : ""));
+  };
+  const drawFilters = () => {
+    const counts = {};
+    content.coachingQuestions.forEach((q) => {
+      counts[q.category] = (counts[q.category] || 0) + 1;
+    });
+    filters.replaceChildren(...["הכל"].concat(content.questionCategories).map(
+      (c) => h("button", {
+        class: "filter",
+        "aria-pressed": c === cat ? "true" : "false",
+        onclick: () => {
+          cat = c;
+          syncUrl();
+          drawFilters();
+          drawList();
+        }
+      }, c)
+    ));
+  };
+  const drawList = () => {
+    const results = [];
+    content.coachingQuestions.forEach((q) => {
+      if (cat !== "הכל" && q.category !== cat) return;
+      if (!term.trim()) {
+        results.push({ q, ranges: [[], []] });
+        return;
+      }
+      const r = matchFields([q.text, q.context, q.category], term);
+      if (r) results.push({ q, ranges: r });
+    });
+    current = results.map((r) => r.q);
+    meta.textContent = term.trim() || cat !== "הכל" ? `${results.length} מתוך ${content.coachingQuestions.length}` : `${content.coachingQuestions.length} שאלות`;
+    if (!results.length) {
+      list.replaceChildren(h("li", null, h(
+        "div",
+        { class: "empty" },
+        h("p", null, "לא נמצאו שאלות שמתאימות לחיפוש."),
+        h("button", { class: "btn", onclick: () => {
+          term = "";
+          cat = "הכל";
+          input.value = "";
+          syncUrl();
+          drawFilters();
+          drawList();
+          input.focus();
+        } }, "הצגת כל השאלות")
+      )));
+      return;
+    }
+    list.replaceChildren(...results.map((r) => questionRow(ctx2, r.q, { ranges: r.ranges })));
+  };
+  let t;
+  input.addEventListener("input", () => {
+    clearTimeout(t);
+    t = setTimeout(() => {
+      term = input.value;
+      syncUrl();
+      drawList();
+    }, 120);
+  });
+  page.append(
+    h(
+      "div",
+      { class: "page-head" },
+      h("h1", null, "שאלות אימון"),
+      h(
+        "div",
+        { class: "btn-row" },
+        meta,
+        h("button", { class: "btn btn-quiet", onclick: () => openSession(ctx2, current) }, icon("play", { size: 16 }), "מצב מפגש")
+      )
+    ),
+    h("label", { class: "search" }, icon("search", { size: 18 }), input),
+    filters,
+    list
+  );
+  drawFilters();
+  drawList();
+}
+async function saved(page, ctx2) {
+  const { content, state } = ctx2;
+  const list = h("ul", { class: "list" });
+  const head = h("div");
+  const draw = () => {
+    const items = state.favorites.map((id) => content.coachingQuestions.find((q) => q.id === id)).filter(Boolean);
+    head.replaceChildren(
+      pageHead("שאלות שמורות", items.length ? `${items.length} שאלות` : ""),
+      h("p", { class: "lead" }, "השאלות שסימנת לשימוש מהיר במפגש. במצב מפגש הן מוצגות אחת-אחת, בגדול."),
+      items.length ? h(
+        "div",
+        { class: "btn-row", style: { marginBottom: "8px" } },
+        h("button", { class: "btn btn-primary", onclick: () => openSession(ctx2, items) }, icon("play", { size: 16 }), "מצב מפגש")
+      ) : null
+    );
+    if (!items.length) {
+      list.replaceChildren(h("li", null, empty("עדיין אין שאלות שמורות. סמן/י שאלה בסימנייה במאגר השאלות, והיא תופיע כאן.", "למאגר השאלות", "#/questions")));
+      return;
+    }
+    list.replaceChildren(...items.map((q) => questionRow(ctx2, q, { onChange: draw })));
+  };
+  page.append(head, list);
+  draw();
+}
+async function practice(page, ctx2) {
+  const id = ctx2.route.parts[1];
+  if (id) return scenarioPage(page, ctx2, id);
+  const { content, state } = ctx2;
+  page.append(
+    pageHead("תרגול תרחישים", `⁦${state.practicedScenarios.length} / ${content.clientScenarios.length}⁩ תורגלו`),
+    h("p", { class: "lead" }, "קרא/י את התרחיש, חשוב/חשבי איך היית מוביל/ה את השיחה, ורק אז פתח/י את כיווני ההנחיה."),
+    h("ul", { class: "list" }, content.clientScenarios.map(
+      (s) => h("li", null, h(
+        "a",
+        { class: "row-link", href: "#/practice/" + encodeURIComponent(s.id) },
+        h(
+          "div",
+          { class: "row-main" },
+          h("div", { class: "row-title" }, s.title, state.practicedScenarios.includes(s.id) ? h("span", { class: "qa-state known" }, "תורגל") : null),
+          h("div", { class: "row-sub" }, s.summary)
+        ),
+        icon("chevronEnd", { size: 18 })
+      ))
+    ))
+  );
+}
+async function scenarioPage(page, ctx2, id) {
+  const { content, state } = ctx2;
+  const s = content.clientScenarios.find((x) => x.id === id);
+  if (!s) {
+    page.append(back("#/practice", "כל התרחישים"), empty("התרחיש לא נמצא.", "לכל התרחישים", "#/practice"));
+    return;
+  }
+  let open = false;
+  const guidance = h("div");
+  const toggleBtn = h("button", { class: "btn", "aria-expanded": "false" });
+  const drawGuidance = () => {
+    toggleBtn.textContent = open ? "הסתרת כיווני ההנחיה" : "הצגת כיווני ההנחיה";
+    toggleBtn.setAttribute("aria-expanded", open ? "true" : "false");
+    guidance.replaceChildren(open ? h(
+      "div",
+      { class: "guidance" },
+      Object.entries(GUIDANCE_LABELS).map(([k, label]) => (s.guidance?.[k] || []).length ? h(
+        "div",
+        null,
+        h("h3", null, label),
+        h("ul", null, s.guidance[k].map((x) => h("li", null, x)))
+      ) : null)
+    ) : null);
+  };
+  toggleBtn.addEventListener("click", () => {
+    open = !open;
+    if (open && !state.practicedScenarios.includes(s.id)) {
+      state.practicedScenarios.push(s.id);
+      ctx2.saveSoon();
+    }
+    drawGuidance();
+  });
+  drawGuidance();
+  const journalList = h("ul", { class: "list" });
+  const drawJournal = async () => {
+    const all = await ctx2.backend.listJournal(ctx2.user.uid).catch(() => []);
+    const mine = all.filter((e) => e.scenarioId === s.id);
+    journalList.replaceChildren(...mine.map((e) => h("li", null, h(
+      "div",
+      { class: "row" },
+      h("div", { class: "row-main" }, h("div", { class: "small muted" }, formatDate(e.createdAt)), h("div", { style: { whiteSpace: "pre-wrap" } }, e.text)),
+      h("button", {
+        class: "icon-btn",
+        "aria-label": "מחיקת הרשומה",
+        onclick: async () => {
+          if (await confirmDialog("מחיקת רשומה", "למחוק את הרשומה מהיומן?", "מחיקה", { danger: true })) {
+            await ctx2.backend.deleteJournal(ctx2.user.uid, e.id);
+            drawJournal();
+          }
+        }
+      }, icon("trash", { size: 18 }))
+    ))));
+  };
+  const reflection = h("textarea", { "aria-label": "רפלקציה על התרגול", placeholder: "מה עבד? מה הייתי עושה אחרת?" });
+  page.append(
+    back("#/practice", "כל התרחישים"),
+    h("h1", null, s.title),
+    s.tags?.length ? h("p", { class: "tags", style: { marginTop: "6px" } }, s.tags.join(", ")) : null,
+    h("p", { style: { marginTop: "16px", maxWidth: "64ch" } }, s.summary),
+    s.clientQuote ? h("blockquote", { class: "quote" }, s.clientQuote) : null,
+    h("div", { class: "btn-row" }, toggleBtn),
+    guidance,
+    h(
+      "section",
+      { class: "section" },
+      h("h2", null, "יומן תרגול"),
+      h("p", { class: "small muted", style: { marginBottom: "10px" } }, "כמה משפטים אחרי התרגול. היומן גלוי גם למנהל/ת הקורס."),
+      reflection,
+      h(
+        "div",
+        { class: "btn-row", style: { marginTop: "8px" } },
+        h("button", {
+          class: "btn btn-primary",
+          onclick: async () => {
+            const text = reflection.value.trim();
+            if (!text) {
+              toast("כתוב/כתבי משהו לפני השמירה");
+              reflection.focus();
+              return;
+            }
+            await ctx2.backend.addJournal(ctx2.user.uid, { scenarioId: s.id, scenarioTitle: s.title, text });
+            if (!state.practicedScenarios.includes(s.id)) {
+              state.practicedScenarios.push(s.id);
+              ctx2.saveSoon();
+            }
+            reflection.value = "";
+            toast("נשמר ביומן");
+            drawJournal();
+          }
+        }, "שמירה ביומן")
+      ),
+      journalList
+    ),
+    h("section", { class: "section" }, noteBox(ctx2, "s:" + s.id, "הערות שלי לתרחיש"))
+  );
+  drawJournal();
+}
+async function me(page, ctx2) {
+  const { content, state } = ctx2;
+  const p = state.profile;
+  const prog = overallProgress(state, content);
+  const journal = await ctx2.backend.listJournal(ctx2.user.uid).catch(() => []);
+  const noteSource = (key) => {
+    const [type, id] = [key.slice(0, 1), key.slice(2)];
+    if (type === "q") {
+      const q = content.coachingQuestions.find((x) => x.id === id);
+      return q && { label: q.text, href: "#/questions?q=" + encodeURIComponent(q.text) };
+    }
+    if (type === "t") {
+      const t = content.learningTopics.find((x) => x.id === id);
+      return t && { label: "נושא: " + t.title, href: "#/review/" + encodeURIComponent(t.id) };
+    }
+    if (type === "s") {
+      const s = content.clientScenarios.find((x) => x.id === id);
+      return s && { label: "תרחיש: " + s.title, href: "#/practice/" + encodeURIComponent(s.id) };
+    }
+    return null;
+  };
+  const notes = Object.entries(ctx2.notes).map(([k, v]) => ({ k, v, src: noteSource(k) })).filter((n) => n.src).sort((a, b) => b.v.updatedAt - a.v.updatedAt);
+  const choice = (name, value, label, current) => h(
+    "label",
+    { style: { display: "inline-flex", gap: "6px", alignItems: "center", marginInlineEnd: "18px" } },
+    h("input", {
+      type: "radio",
+      name,
+      value,
+      checked: current === value,
+      onchange: () => {
+        state.prefs[name] = value;
+        applyPrefs(state.prefs);
+        ctx2.saveSoon();
+      }
+    }),
+    label
+  );
+  page.append(
+    h(
+      "div",
+      { style: { display: "flex", gap: "16px", alignItems: "center", marginBottom: "8px" } },
+      h(
+        "span",
+        { class: "avatar", style: { width: "56px", height: "56px", fontSize: "1.1rem" } },
+        p.photo ? h("img", { src: p.photo, alt: "", referrerpolicy: "no-referrer" }) : initials(p.name)
+      ),
+      h(
+        "div",
+        { style: { flex: "1", minWidth: "0" } },
+        h("h1", null, p.name || "האזור שלי"),
+        h("div", { class: "small muted" }, p.email, ctx2.isAdmin ? h("span", { class: "role", style: { marginInlineStart: "8px" } }, "מנהל/ת") : null),
+        h("div", { class: "small muted" }, "הצטרפות: " + formatDate(state.createdAt))
+      ),
+      h("button", { class: "btn", onclick: () => ctx2.signOut() }, "התנתקות")
+    ),
+    h(
+      "section",
+      { class: "section" },
+      h("h2", null, "ההתקדמות שלי"),
+      h(
+        "div",
+        { class: "stats", style: { marginBottom: "12px" } },
+        stat(prog.pct + "%", "מהחומר נלמד"),
+        stat(`⁦${prog.seen} / ${prog.total}⁩`, "שאלות חזרה שנצפו"),
+        stat(`⁦${state.practicedScenarios.length} / ${content.clientScenarios.length}⁩`, "תרחישים שתורגלו")
+      ),
+      h("ul", { class: "list" }, content.learningTopics.map((t) => {
+        const tp = topicProgress(state, t);
+        return h("li", null, h(
+          "a",
+          { class: "row-link", href: "#/review/" + encodeURIComponent(t.id) },
+          h("div", { class: "row-main" }, h("div", { class: "row-title", style: { fontSize: "1rem" } }, t.title)),
+          h("div", { class: "bar-wrap" }, bar(tp.known, tp.total), h("div", { class: "small muted" }, `⁦${tp.known} / ${tp.total}⁩`))
+        ));
+      }))
+    ),
+    h(
+      "section",
+      { class: "section" },
+      h("h2", null, "ההערות שלי"),
+      notes.length ? h("ul", { class: "list" }, notes.map((n) => h("li", null, h(
+        "div",
+        { class: "row" },
+        h(
+          "div",
+          { class: "row-main" },
+          h("a", { href: n.src.href, class: "small" }, n.src.label),
+          h("div", { class: "note-preview" }, n.v.text)
+        ),
+        h("span", { class: "row-side" }, formatDate(n.v.updatedAt))
+      )))) : h("p", { class: "muted small" }, "אין עדיין הערות. אפשר להוסיף הערה ליד כל שאלה, נושא ותרחיש.")
+    ),
+    h(
+      "section",
+      { class: "section" },
+      h("h2", null, "יומן התרגול שלי"),
+      journal.length ? h("ul", { class: "list" }, journal.map((e) => h("li", null, h(
+        "div",
+        { class: "row" },
+        h(
+          "div",
+          { class: "row-main" },
+          h("a", { class: "small", href: "#/practice/" + encodeURIComponent(e.scenarioId) }, e.scenarioTitle || "תרחיש"),
+          h("div", { style: { whiteSpace: "pre-wrap" } }, e.text)
+        ),
+        h("span", { class: "row-side" }, formatDate(e.createdAt))
+      )))) : h("p", { class: "muted small" }, "אין עדיין רשומות. אחרי תרגול תרחיש אפשר לכתוב כמה משפטים ביומן.")
+    ),
+    h(
+      "section",
+      { class: "section" },
+      h("h2", null, "הגדרות"),
+      h(
+        "div",
+        { class: "field" },
+        h("span", { class: "small", style: { fontWeight: "500" } }, "ערכת צבע"),
+        h("div", null, choice("theme", "auto", "לפי המכשיר", state.prefs.theme), choice("theme", "light", "בהירה", state.prefs.theme), choice("theme", "dark", "כהה", state.prefs.theme))
+      ),
+      h(
+        "div",
+        { class: "field" },
+        h("span", { class: "small", style: { fontWeight: "500" } }, "גודל טקסט"),
+        h("div", null, choice("font", "sm", "קטן", state.prefs.font), choice("font", "md", "רגיל", state.prefs.font), choice("font", "lg", "גדול", state.prefs.font))
+      ),
+      h("p", { class: "small muted", style: { marginTop: "8px" } }, "ההתקדמות, ההערות ויומן התרגול שלך גלויים גם למנהל/ת הקורס."),
+      h(
+        "div",
+        { class: "btn-row", style: { marginTop: "16px" } },
+        h("button", {
+          class: "btn btn-danger",
+          onclick: async () => {
+            const ok = await confirmDialog("איפוס התקדמות", "כל סימוני החזרה, הנושאים שהושלמו והתרחישים שתורגלו יימחקו. השמורים, ההערות והיומן יישארו.", "איפוס", { danger: true });
+            if (!ok) return;
+            const fresh = defaultState(ctx2.user);
+            Object.assign(state, { cards: fresh.cards, completedTopics: [], practicedScenarios: [] });
+            revealed.clear();
+            await ctx2.saveNow();
+            toast("ההתקדמות אופסה");
+            ctx2.rerender();
+          }
+        }, "איפוס התקדמות")
+      )
+    ),
+    h("p", { class: "small muted", style: { marginTop: "40px" } }, h("a", { href: "#/about" }, "אודות האתר"))
+  );
+}
+async function about(page, ctx2) {
+  page.append(
+    h("h1", null, "אודות"),
+    h("p", { style: { marginTop: "16px", maxWidth: "62ch" } }, "מלווה NLP הוא כלי עבודה יומיומי למאמני ותלמידי NLP דוברי עברית: חזרה על החומר בכרטיסיות חכמות, מאגר שאלות אימון לשימוש חי במפגש, ותרגול תרחישי לקוח עם כיווני הנחיה."),
+    h("p", { style: { marginTop: "12px", maxWidth: "62ch" } }, "ההתקדמות, השמורים, ההערות ויומן התרגול נשמרים בחשבון ומסתנכרנים בין המכשירים. אפשר להתקין את האתר למסך הבית ולהשתמש בו גם בלי חיבור לאינטרנט."),
+    h(
+      "section",
+      { class: "section" },
+      h("h2", null, "קיצורי מקלדת במצב מפגש"),
+      h(
+        "ul",
+        { class: "list" },
+        h("li", { class: "row" }, h("div", { class: "row-main" }, "חץ שמאלה או רווח"), h("span", { class: "row-side keep" }, "השאלה הבאה")),
+        h("li", { class: "row" }, h("div", { class: "row-main" }, "חץ ימינה"), h("span", { class: "row-side keep" }, "השאלה הקודמת")),
+        h("li", { class: "row" }, h("div", { class: "row-main" }, "Esc"), h("span", { class: "row-side keep" }, "יציאה"))
+      )
+    )
+  );
+}
+var VIEWS = { home, review, questions, saved, practice, me, about };
+
+// ../../../../../../home/claude/nlp-coach/js/admin.js
+var SUBTABS = [
+  ["requests", "בקשות גישה"],
+  ["allowed", "מורשים"],
+  ["students", "תלמידים"],
+  ["content", "עריכת תוכן"]
+];
+var EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+function subtabs(active) {
+  return h(
+    "nav",
+    { class: "subtabs", "aria-label": "ניהול" },
+    SUBTABS.map(([id, label]) => h("a", { class: "tab", href: "#/admin/" + id, "aria-current": id === active ? "page" : null, style: { height: "40px" } }, label))
+  );
+}
+async function admin(page, ctx2) {
+  const sub = ctx2.route.parts[1] || "requests";
+  if (sub === "user") return userDetail(page, ctx2, ctx2.route.parts[2]);
+  page.append(h("h1", { style: { marginBottom: "16px" } }, "ניהול"), subtabs(sub));
+  const body = h("div");
+  page.append(body);
+  if (sub === "allowed") return allowed(body, ctx2);
+  if (sub === "students") return students(body, ctx2);
+  if (sub === "content") return contentEditor(body, ctx2);
+  return requests(body, ctx2);
+}
+async function requests(body, ctx2) {
+  const list = await ctx2.backend.listRequests();
+  if (!list.length) {
+    body.append(h("div", { class: "empty" }, h("p", null, "אין בקשות גישה ממתינות. כשמישהו יתחבר עם מייל שלא ברשימה וישלח בקשה, היא תופיע כאן.")));
+    return;
+  }
+  body.append(h("ul", { class: "list" }, list.map((r) => h("li", null, h(
+    "div",
+    { class: "row", style: { alignItems: "center" } },
+    h(
+      "div",
+      { class: "row-main" },
+      h("div", { class: "row-title", style: { fontSize: "1rem" } }, r.name || r.email),
+      h("div", { class: "row-sub" }, r.email, " | ", formatDate(r.requestedAt))
+    ),
+    h(
+      "div",
+      { class: "btn-row" },
+      h("button", { class: "btn btn-primary", onclick: async () => {
+        await ctx2.backend.approveRequest(r);
+        toast("אושר");
+        ctx2.rerender();
+      } }, "אישור"),
+      h("button", { class: "btn", onclick: async () => {
+        await ctx2.backend.rejectRequest(r.uid);
+        toast("הבקשה נדחתה");
+        ctx2.rerender();
+      } }, "דחייה")
+    )
+  )))));
+}
+async function allowed(body, ctx2) {
+  const list = await ctx2.backend.listAllowed();
+  const ta = h("textarea", { "aria-label": "כתובות מייל להוספה", placeholder: "כתובת אחת בכל שורה, או מופרדות בפסיק" });
+  const role = h("select", { "aria-label": "תפקיד" }, h("option", { value: "student" }, "תלמיד/ה"), h("option", { value: "admin" }, "מנהל/ת"));
+  const error = h("p", { class: "small", style: { color: "var(--danger)" } });
+  const add = async () => {
+    const emails = ta.value.split(/[\s,;]+/).map((e) => e.trim().toLowerCase()).filter(Boolean);
+    const bad = emails.filter((e) => !EMAIL_RE.test(e));
+    if (!emails.length) {
+      error.textContent = "הוסף/י לפחות כתובת אחת.";
+      return;
+    }
+    if (bad.length) {
+      error.textContent = "כתובות לא תקינות: " + bad.join(", ");
+      return;
+    }
+    await ctx2.backend.addAllowed([...new Set(emails)], role.value);
+    toast(emails.length === 1 ? "הכתובת נוספה" : `${emails.length} כתובות נוספו`);
+    ctx2.rerender();
+  };
+  ta.addEventListener("input", () => {
+    error.textContent = "";
+  });
+  body.append(
+    h(
+      "div",
+      { class: "field" },
+      h("label", null, "הוספת כתובות"),
+      ta,
+      error,
+      h("div", { class: "btn-row" }, h("div", { style: { width: "160px" } }, role), h("button", { class: "btn btn-primary", onclick: add }, "הוספה לרשימה"))
+    ),
+    h("div", { class: "page-head", style: { marginTop: "28px", marginBottom: "4px" } }, h("h2", null, "רשימת המורשים"), h("span", { class: "meta" }, `${list.length} כתובות`)),
+    h("div", { class: "table-wrap" }, h(
+      "table",
+      null,
+      h("thead", null, h("tr", null, h("th", null, "מייל"), h("th", null, "תפקיד"), h("th", null, "נוסף/ה"), h("th", null, ""))),
+      h("tbody", null, list.map((a) => h(
+        "tr",
+        null,
+        h("td", null, a.email),
+        h("td", null, a.role === "admin" ? h("span", { class: "role" }, "מנהל/ת") : "תלמיד/ה"),
+        h("td", { class: "muted" }, formatDate(a.addedAt)),
+        h("td", { style: { textAlign: "end" } }, a.email === ctx2.user.email ? h("span", { class: "small muted" }, "את/ה") : h("button", {
+          class: "icon-btn",
+          "aria-label": "הסרת " + a.email,
+          title: "הסרה",
+          onclick: async () => {
+            if (!await confirmDialog("הסרת גישה", `${a.email} לא יוכל/תוכל להיכנס לאתר מהכניסה הבאה. הנתונים שלו/ה יישמרו.`, "הסרה", { danger: true })) return;
+            await ctx2.backend.removeAllowed(a.email);
+            toast("הוסר/ה");
+            ctx2.rerender();
+          }
+        }, icon("trash", { size: 18 })))
+      )))
+    ))
+  );
+}
+async function students(body, ctx2) {
+  const users = (await ctx2.backend.listUsers()).map((u) => ({ uid: u.uid, state: normalizeState(u, null) }));
+  if (!users.length) {
+    body.append(h("div", { class: "empty" }, h("p", null, "עדיין אף אחד לא נכנס לאתר. תלמידים יופיעו כאן אחרי הכניסה הראשונה שלהם.")));
+    return;
+  }
+  users.sort((a, b) => (b.state.lastSeen || 0) - (a.state.lastSeen || 0));
+  body.append(h("div", { class: "table-wrap" }, h(
+    "table",
+    null,
+    h("thead", null, h("tr", null, h("th", null, "שם"), h("th", null, "כניסה אחרונה"), h("th", null, "נלמד"), h("th", null, "תרגולים"), h("th", null, ""))),
+    h("tbody", null, users.map((u) => {
+      const p = overallProgress(u.state, ctx2.content);
+      return h(
+        "tr",
+        null,
+        h("td", null, h("div", null, u.state.profile.name || "ללא שם"), h("div", { class: "small muted" }, u.state.profile.email)),
+        h("td", { class: "muted" }, formatDate(u.state.lastSeen)),
+        h("td", null, p.pct + "%"),
+        h("td", null, `⁦${u.state.practicedScenarios.length} / ${ctx2.content.clientScenarios.length}⁩`),
+        h("td", { style: { textAlign: "end" } }, h("a", { href: "#/admin/user/" + encodeURIComponent(u.uid), class: "small" }, "פרטים"))
+      );
+    }))
+  )));
+}
+async function userDetail(page, ctx2, uid) {
+  page.append(h("a", { class: "back", href: "#/admin/students" }, icon("chevronStart", { size: 16 }), "כל התלמידים"));
+  const users = await ctx2.backend.listUsers();
+  const raw = users.find((u) => u.uid === uid);
+  if (!raw) {
+    page.append(h("div", { class: "empty" }, h("p", null, "התלמיד/ה לא נמצא/ה.")));
+    return;
+  }
+  const state = normalizeState(raw, null);
+  const [notes, journal] = await Promise.all([
+    ctx2.backend.getUserNotes(uid).catch(() => ({})),
+    ctx2.backend.getUserJournal(uid).catch(() => [])
+  ]);
+  const { content } = ctx2;
+  const p = overallProgress(state, content);
+  const noteLabel = (key) => {
+    const id = key.slice(2);
+    if (key.startsWith("q:")) return content.coachingQuestions.find((x) => x.id === id)?.text;
+    if (key.startsWith("t:")) {
+      const t = content.learningTopics.find((x) => x.id === id);
+      return t && "נושא: " + t.title;
+    }
+    if (key.startsWith("s:")) {
+      const s = content.clientScenarios.find((x) => x.id === id);
+      return s && "תרחיש: " + s.title;
+    }
+  };
+  const noteList = Object.entries(notes).map(([k, v]) => ({ label: noteLabel(k) || "פריט שנמחק", ...v })).sort((a, b) => b.updatedAt - a.updatedAt);
+  page.append(
+    h("h1", null, state.profile.name || "ללא שם"),
+    h("p", { class: "small muted", style: { marginTop: "4px" } }, state.profile.email, " | הצטרפות: ", formatDate(state.createdAt), " | כניסה אחרונה: ", formatDate(state.lastSeen)),
+    h(
+      "section",
+      { class: "section" },
+      h("h2", null, "התקדמות"),
+      h(
+        "p",
+        { class: "muted small", style: { marginBottom: "8px" } },
+        `נלמד ${p.pct}% (${p.known} מתוך ${p.total} שאלות). ${state.practicedScenarios.length} מתוך ${content.clientScenarios.length} תרחישים תורגלו. ${state.favorites.length} שאלות שמורות.`
+      ),
+      h("ul", { class: "list" }, content.learningTopics.map((t) => {
+        const tp = topicProgress(state, t);
+        return h("li", null, h(
+          "div",
+          { class: "row", style: { alignItems: "center" } },
+          h("div", { class: "row-main" }, t.title, state.completedTopics.includes(t.id) ? h("span", { class: "qa-state known" }, "הושלם") : null),
+          h(
+            "div",
+            { class: "bar-wrap" },
+            h("div", { class: "bar" }, h("span", { style: { width: (tp.total ? tp.known / tp.total * 100 : 0) + "%" } })),
+            h("div", { class: "small muted" }, `⁦${tp.known} / ${tp.total}⁩`)
+          )
+        ));
+      }))
+    ),
+    h(
+      "section",
+      { class: "section" },
+      h("h2", null, "הערות"),
+      noteList.length ? h("ul", { class: "list" }, noteList.map((n) => h("li", null, h(
+        "div",
+        { class: "row" },
+        h("div", { class: "row-main" }, h("div", { class: "small muted" }, n.label), h("div", { class: "note-preview" }, n.text)),
+        h("span", { class: "row-side" }, formatDate(n.updatedAt))
+      )))) : h("p", { class: "muted small" }, "אין הערות.")
+    ),
+    h(
+      "section",
+      { class: "section" },
+      h("h2", null, "יומן תרגול"),
+      journal.length ? h("ul", { class: "list" }, journal.map((e) => h("li", null, h(
+        "div",
+        { class: "row" },
+        h("div", { class: "row-main" }, h("div", { class: "small muted" }, e.scenarioTitle || "תרחיש"), h("div", { style: { whiteSpace: "pre-wrap" } }, e.text)),
+        h("span", { class: "row-side" }, formatDate(e.createdAt))
+      )))) : h("p", { class: "muted small" }, "אין רשומות.")
+    )
+  );
+}
+var CONTENT_TABS = [
+  ["questions", "שאלות אימון"],
+  ["categories", "קטגוריות"],
+  ["topics", "נושאי חזרה"],
+  ["scenarios", "תרחישים"]
+];
+var newId = (prefix) => prefix + Date.now().toString(36) + Math.random().toString(36).slice(2, 5);
+var clone = (o) => JSON.parse(JSON.stringify(o));
+var lines = (s) => s.split("\n").map((x) => x.trim()).filter(Boolean);
+async function contentEditor(body, ctx2) {
+  const type = ctx2.route.params.type || "questions";
+  const c = clone(ctx2.content);
+  const save = async (message) => {
+    try {
+      await ctx2.saveContent(c);
+      toast(message || "נשמר");
+      ctx2.rerender();
+    } catch (e) {
+      console.error(e);
+      toast("השמירה נכשלה");
+    }
+  };
+  const move = (arr, i, d) => {
+    const j = i + d;
+    if (j < 0 || j >= arr.length) return;
+    [arr[i], arr[j]] = [arr[j], arr[i]];
+    save("הסדר עודכן");
+  };
+  const remove = async (arr, i, label) => {
+    if (!await confirmDialog("מחיקה", `למחוק את "${label}"? אי אפשר לבטל את הפעולה.`, "מחיקה", { danger: true })) return;
+    arr.splice(i, 1);
+    save("נמחק");
+  };
+  const itemRow = (arr, i, title, sub, onEdit) => h("li", { class: "editor-item" }, h(
+    "div",
+    { class: "row", style: { padding: "0", alignItems: "center" } },
+    h("div", { class: "row-main" }, h("div", { style: { fontWeight: "500" } }, title), sub ? h("div", { class: "row-sub" }, sub) : null),
+    h(
+      "div",
+      { class: "row-actions", style: { margin: "0" } },
+      h("button", { class: "icon-btn", "aria-label": "למעלה", title: "למעלה", onclick: () => move(arr, i, -1) }, icon("up", { size: 18 })),
+      h("button", { class: "icon-btn", "aria-label": "למטה", title: "למטה", onclick: () => move(arr, i, 1) }, icon("down", { size: 18 })),
+      h("button", { class: "icon-btn", "aria-label": "עריכה", title: "עריכה", onclick: onEdit }, icon("pencil", { size: 18 })),
+      h("button", { class: "icon-btn", "aria-label": "מחיקה", title: "מחיקה", onclick: () => remove(arr, i, title) }, icon("trash", { size: 18 }))
+    )
+  ));
+  const field = (label, input, hint) => h("div", { class: "field" }, h("label", null, label), input, hint ? h("span", { class: "hint" }, hint) : null);
+  const formButtons = (close, onSave) => h(
+    "div",
+    { class: "btn-row" },
+    h("button", { class: "btn", onclick: close }, "ביטול"),
+    h("button", { class: "btn btn-primary", onclick: onSave }, "שמירה")
+  );
+  const required = (els, close, apply) => () => {
+    if (els.some((el) => !el.value.trim())) {
+      toast("יש למלא את השדות המסומנים");
+      els.find((el) => !el.value.trim()).focus();
+      return;
+    }
+    apply();
+    close();
+  };
+  const editQuestion = (i) => {
+    const q = i === void 0 ? { id: newId("q"), category: c.questionCategories[0], text: "", context: "" } : c.coachingQuestions[i];
+    modal(i === void 0 ? "שאלה חדשה" : "עריכת שאלה", (close) => {
+      const text = h("textarea", { value: q.text, style: { minHeight: "60px" } });
+      const ctxIn = h("textarea", { value: q.context, style: { minHeight: "60px" } });
+      const cat = h("select", null, c.questionCategories.map((x) => h("option", { value: x, selected: x === q.category ? "" : null }, x)));
+      cat.value = q.category;
+      return [
+        field("השאלה *", text),
+        field("מתי להשתמש בה", ctxIn),
+        field("קטגוריה", cat),
+        formButtons(close, required([text], close, () => {
+          Object.assign(q, { text: text.value.trim(), context: ctxIn.value.trim(), category: cat.value });
+          if (i === void 0) c.coachingQuestions.push(q);
+          save();
+        }))
+      ];
+    });
+  };
+  const editTopic = (i) => {
+    const t = i === void 0 ? { id: newId("topic-"), title: "", subtitle: "", questions: [{ q: "", a: "" }] } : clone(c.learningTopics[i]);
+    modal(i === void 0 ? "נושא חדש" : "עריכת נושא", (close) => {
+      const title = h("input", { type: "text", value: t.title });
+      const subtitle = h("input", { type: "text", value: t.subtitle });
+      const qaWrap = h("div");
+      const qaRows = [];
+      const addQa = (qa) => {
+        const q = h("textarea", { value: qa.q, placeholder: "שאלה", style: { minHeight: "44px" } });
+        const a = h("textarea", { value: qa.a, placeholder: "תשובה" });
+        const row = h(
+          "div",
+          { style: { borderTop: "1px solid var(--line-2)", paddingTop: "10px", marginTop: "10px" } },
+          q,
+          h("div", { style: { height: "6px" } }),
+          a,
+          h("button", { class: "btn btn-quiet btn-danger", style: { marginTop: "4px" }, onclick: () => {
+            row.remove();
+            qaRows.splice(qaRows.indexOf(entry), 1);
+          } }, "הסרת השאלה")
+        );
+        const entry = { q, a };
+        qaRows.push(entry);
+        qaWrap.append(row);
+      };
+      t.questions.forEach(addQa);
+      return [
+        field("שם הנושא *", title),
+        field("תיאור קצר", subtitle),
+        h(
+          "div",
+          { class: "field" },
+          h("label", null, "שאלות ותשובות"),
+          qaWrap,
+          h("button", { class: "btn btn-quiet", style: { alignSelf: "flex-start" }, onclick: () => addQa({ q: "", a: "" }) }, icon("plus", { size: 16 }), "הוספת שאלה")
+        ),
+        h("p", { class: "small muted", style: { marginBottom: "10px" } }, "שינוי סדר או מחיקה של שאלות בנושא עלולים לאפס את סימוני החזרה שלהן אצל התלמידים."),
+        formButtons(close, required([title], close, () => {
+          t.title = title.value.trim();
+          t.subtitle = subtitle.value.trim();
+          t.questions = qaRows.map((r) => ({ q: r.q.value.trim(), a: r.a.value.trim() })).filter((r) => r.q);
+          if (i === void 0) c.learningTopics.push(t);
+          else c.learningTopics[i] = t;
+          save();
+        }))
+      ];
+    });
+  };
+  const editScenario = (i) => {
+    const s = i === void 0 ? { id: newId("scenario-"), title: "", summary: "", clientQuote: "", tags: [], guidance: { explore: [], possibleQuestions: [], thinkingDirections: [], watchFor: [] } } : clone(c.clientScenarios[i]);
+    modal(i === void 0 ? "תרחיש חדש" : "עריכת תרחיש", (close) => {
+      const title = h("input", { type: "text", value: s.title });
+      const summary = h("textarea", { value: s.summary });
+      const quote = h("textarea", { value: s.clientQuote || "", style: { minHeight: "60px" } });
+      const tags = h("input", { type: "text", value: (s.tags || []).join(", ") });
+      const g = {};
+      Object.keys(GUIDANCE_LABELS).forEach((k) => {
+        g[k] = h("textarea", { value: (s.guidance?.[k] || []).join("\n") });
+      });
+      return [
+        field("כותרת *", title),
+        field("תיאור המקרה *", summary),
+        field("ציטוט הלקוח/ה", quote),
+        field("תגיות", tags, "מופרדות בפסיק"),
+        Object.entries(GUIDANCE_LABELS).map(([k, label]) => field(label, g[k], "פריט אחד בכל שורה")),
+        formButtons(close, required([title, summary], close, () => {
+          s.title = title.value.trim();
+          s.summary = summary.value.trim();
+          s.clientQuote = quote.value.trim();
+          s.tags = tags.value.split(",").map((x) => x.trim()).filter(Boolean);
+          s.guidance = {};
+          Object.keys(GUIDANCE_LABELS).forEach((k) => {
+            s.guidance[k] = lines(g[k].value);
+          });
+          if (i === void 0) c.clientScenarios.push(s);
+          else c.clientScenarios[i] = s;
+          save();
+        }))
+      ];
+    });
+  };
+  const editCategory = (i) => {
+    const old = i === void 0 ? "" : c.questionCategories[i];
+    modal(i === void 0 ? "קטגוריה חדשה" : "שינוי שם קטגוריה", (close) => {
+      const name = h("input", { type: "text", value: old });
+      return [
+        field("שם *", name, i === void 0 ? null : "השאלות בקטגוריה יעודכנו לשם החדש."),
+        formButtons(close, required([name], close, () => {
+          const v = name.value.trim();
+          if (c.questionCategories.includes(v) && v !== old) {
+            toast("קטגוריה בשם הזה כבר קיימת");
+            return;
+          }
+          if (i === void 0) c.questionCategories.push(v);
+          else {
+            c.questionCategories[i] = v;
+            c.coachingQuestions.forEach((q) => {
+              if (q.category === old) q.category = v;
+            });
+          }
+          save();
+        }))
+      ];
+    });
+  };
+  const removeCategory = async (i) => {
+    const name = c.questionCategories[i];
+    const used = c.coachingQuestions.filter((q) => q.category === name).length;
+    if (used) {
+      toast(`יש ${used} שאלות בקטגוריה. העבר/י אותן לקטגוריה אחרת קודם.`);
+      return;
+    }
+    if (c.questionCategories.length === 1) {
+      toast("צריכה להישאר לפחות קטגוריה אחת");
+      return;
+    }
+    remove(c.questionCategories, i, name);
+  };
+  let list, addLabel, onAdd;
+  if (type === "topics") {
+    list = c.learningTopics.map((t, i) => itemRow(c.learningTopics, i, t.title, `${t.questions.length} שאלות`, () => editTopic(i)));
+    addLabel = "נושא חדש";
+    onAdd = () => editTopic();
+  } else if (type === "scenarios") {
+    list = c.clientScenarios.map((s, i) => itemRow(c.clientScenarios, i, s.title, (s.tags || []).join(", "), () => editScenario(i)));
+    addLabel = "תרחיש חדש";
+    onAdd = () => editScenario();
+  } else if (type === "categories") {
+    list = c.questionCategories.map((name, i) => {
+      const row = itemRow(c.questionCategories, i, name, `${c.coachingQuestions.filter((q) => q.category === name).length} שאלות`, () => editCategory(i));
+      row.querySelector('[aria-label="מחיקה"]').replaceWith(
+        h("button", { class: "icon-btn", "aria-label": "מחיקה", title: "מחיקה", onclick: () => removeCategory(i) }, icon("trash", { size: 18 }))
+      );
+      return row;
+    });
+    addLabel = "קטגוריה חדשה";
+    onAdd = () => editCategory();
+  } else {
+    list = c.coachingQuestions.map((q, i) => itemRow(c.coachingQuestions, i, q.text, q.category, () => editQuestion(i)));
+    addLabel = "שאלה חדשה";
+    onAdd = () => editQuestion();
+  }
+  body.append(
+    h(
+      "div",
+      { class: "filters", style: { marginBottom: "16px" } },
+      CONTENT_TABS.map(([id, label]) => h("a", { class: "filter", href: "#/admin/content?type=" + id, "aria-pressed": id === type ? "true" : "false" }, label))
+    ),
+    h(
+      "div",
+      { class: "btn-row", style: { marginBottom: "8px", justifyContent: "space-between" } },
+      h("button", { class: "btn btn-primary", onclick: onAdd }, icon("plus", { size: 16 }), addLabel),
+      h("button", {
+        class: "btn btn-quiet",
+        onclick: async () => {
+          if (!await confirmDialog("שחזור תוכן ברירת המחדל", "כל השינויים שנעשו בתוכן יימחקו, והתוכן המקורי יחזור.", "שחזור", { danger: true })) return;
+          Object.assign(c, clone(DEFAULT_CONTENT));
+          save("התוכן שוחזר");
+        }
+      }, "שחזור תוכן ברירת המחדל")
+    ),
+    h("ul", null, list)
+  );
+}
+var ADMIN_VIEWS = { admin };
+
+// ../../../../../../home/claude/nlp-coach/js/app.js
+var root = document.getElementById("app");
+var ctx = {
+  backend: null,
+  user: null,
+  role: null,
+  state: null,
+  content: DEFAULT_CONTENT,
+  notes: {},
+  route: { parts: ["home"], params: {} },
+  get isAdmin() {
+    return this.role === "admin";
+  },
+  navigate(path) {
+    if (location.hash === "#/" + path) render();
+    else location.hash = "#/" + path;
+  },
+  // עדכון כתובת בלי לרנדר מחדש (למשל בזמן הקלדה בחיפוש)
+  replaceRoute(path) {
+    history.replaceState(null, "", "#/" + path);
+    ctx.route = parseRoute();
+  },
+  rerender() {
+    render();
+  },
+  saveTimer: null,
+  saveSoon() {
+    clearTimeout(this.saveTimer);
+    this.saveTimer = setTimeout(() => this.saveNow(), 600);
+  },
+  async saveNow() {
+    clearTimeout(this.saveTimer);
+    if (!this.user || !this.state) return;
+    this.state.lastSeen = Date.now();
+    try {
+      await this.backend.saveState(this.user.uid, this.state);
+    } catch (e) {
+      console.error(e);
+      toast("השמירה נכשלה. נסה/י שוב בעוד רגע.");
+    }
+  },
+  async setNote(key, text) {
+    if (text.trim()) this.notes[key] = { text, updatedAt: Date.now() };
+    else delete this.notes[key];
+    try {
+      await this.backend.setNote(this.user.uid, key, text);
+    } catch (e) {
+      console.error(e);
+      toast("שמירת ההערה נכשלה");
+    }
+  },
+  async saveContent(content) {
+    this.content = content;
+    await this.backend.saveContent(content);
+  },
+  async signOut() {
+    await this.saveNow();
+    await this.backend.signOut();
+  }
+};
+function parseRoute() {
+  const raw = location.hash.replace(/^#\/?/, "");
+  const [path, query] = raw.split("?");
+  const parts = (path || "home").split("/").filter(Boolean).map(decodeURIComponent);
+  const params = Object.fromEntries(new URLSearchParams(query || ""));
+  return { parts: parts.length ? parts : ["home"], params };
+}
+function gateScreen(children) {
+  root.replaceChildren(h("main", { class: "gate" }, h("div", { class: "gate-box" }, children)));
+}
+function loadingScreen() {
+  gateScreen([h("p", { class: "muted" }, "טוען…")]);
+}
+function signInScreen(error) {
+  const demo = ctx.backend.mode === "demo";
+  gateScreen([
+    h("h1", null, APP_NAME),
+    h("p", null, "כלי עבודה יומיומי למאמני ותלמידי NLP: חזרה על החומר, מאגר שאלות אימון ותרגול תרחישים."),
+    h("button", {
+      class: "btn",
+      onclick: async (e) => {
+        e.currentTarget.disabled = true;
+        try {
+          await ctx.backend.signIn();
+        } catch (err) {
+          console.error(err);
+          signInScreen("ההתחברות לא הצליחה. נסה/י שוב.");
+        }
+      }
+    }, demo ? null : googleLogo(), demo ? "כניסה למצב הדגמה" : "התחברות עם Google"),
+    error ? h("p", { class: "small", style: { color: "var(--danger)", marginTop: "12px" } }, error) : null,
+    h(
+      "p",
+      { class: "small", style: { marginTop: "16px" } },
+      demo ? "מצב הדגמה: אין התחברות אמיתית, והנתונים נשמרים בדפדפן זה בלבד." : "הכניסה פתוחה רק לכתובות מייל שאושרו על ידי מנהל/ת הקורס."
+    )
+  ]);
+}
+async function pendingScreen() {
+  const requested = await ctx.backend.hasRequested(ctx.user);
+  gateScreen([
+    h("h1", null, "החשבון ממתין לאישור"),
+    h("p", null, `התחברת בתור ${ctx.user.email}. הכתובת הזו עדיין לא ברשימת המורשים.`),
+    requested ? h("p", null, "בקשת הגישה נשלחה. אחרי שמנהל/ת יאשר/תאשר אותה, היכנס/י שוב לאתר.") : h("button", {
+      class: "btn btn-primary",
+      onclick: async () => {
+        try {
+          await ctx.backend.requestAccess(ctx.user);
+          toast("הבקשה נשלחה");
+          pendingScreen();
+        } catch (e) {
+          console.error(e);
+          toast("שליחת הבקשה נכשלה");
+        }
+      }
+    }, "שליחת בקשת גישה"),
+    h(
+      "div",
+      { class: "btn-row", style: { marginTop: "12px" } },
+      h("button", { class: "btn btn-quiet", onclick: () => location.reload() }, "בדיקה מחדש"),
+      h("button", { class: "btn btn-quiet", onclick: () => ctx.backend.signOut() }, "התנתקות")
+    )
+  ]);
+}
+var TABS = [
+  ["home", "ראשי"],
+  ["review", "חזרה"],
+  ["questions", "שאלות"],
+  ["practice", "תרגול"],
+  ["saved", "שמורים"]
+];
+function topbar() {
+  const current = ctx.route.parts[0];
+  const tabs = TABS.concat(ctx.isAdmin ? [["admin", "ניהול"]] : []);
+  const p = ctx.state.profile;
+  return h(
+    "header",
+    { class: "topbar" },
+    h("a", { class: "brand", href: "#/home" }, APP_NAME),
+    h(
+      "nav",
+      { class: "tabs", "aria-label": "ניווט ראשי" },
+      tabs.map(([id, label]) => h("a", { class: "tab", href: "#/" + id, "aria-current": current === id ? "page" : null }, label))
+    ),
+    h(
+      "a",
+      { class: "avatar-link", href: "#/me", "aria-label": "האזור שלי", title: "האזור שלי" },
+      h("span", { class: "avatar" }, p.photo ? h("img", { src: p.photo, alt: "", referrerpolicy: "no-referrer" }) : initials(p.name))
+    )
+  );
+}
+async function render() {
+  ctx.route = parseRoute();
+  const name = ctx.route.parts[0];
+  const view = VIEWS[name] || ADMIN_VIEWS[name] || VIEWS.home;
+  if (ADMIN_VIEWS[name] && !ctx.isAdmin) return ctx.navigate("home");
+  const page = h("main", { class: "page", id: "main" });
+  root.replaceChildren(
+    topbar(),
+    ctx.backend.mode === "demo" ? h("div", { class: "demo-note" }, "מצב הדגמה: הנתונים נשמרים בדפדפן זה בלבד. ההתחברות עם Google תופעל אחרי חיבור Firebase.") : null,
+    page
+  );
+  try {
+    await view(page, ctx);
+  } catch (e) {
+    console.error(e);
+    page.replaceChildren(h("div", { class: "empty" }, h("p", null, "משהו השתבש בטעינת המסך."), h("button", { class: "btn", onclick: render }, "נסה/י שוב")));
+  }
+  const h1 = page.querySelector("h1");
+  document.title = (h1 ? h1.textContent + " | " : "") + APP_NAME;
+}
+async function onAuth(user) {
+  ctx.user = user;
+  if (!user) {
+    ctx.role = null;
+    ctx.state = null;
+    return signInScreen();
+  }
+  loadingScreen();
+  const access = await ctx.backend.getAccess(user);
+  if (!access) return pendingScreen();
+  ctx.role = access.role;
+  const [rawState, content, notes] = await Promise.all([
+    ctx.backend.loadState(user.uid).catch(() => null),
+    ctx.backend.getContent().catch(() => null),
+    ctx.backend.listNotes(user.uid).catch(() => ({}))
+  ]);
+  ctx.state = normalizeState(rawState, user);
+  if (!rawState && importLegacy(ctx.state)) toast("ההתקדמות הקודמת שלך הועברה לחשבון");
+  ctx.content = content && content.coachingQuestions ? content : DEFAULT_CONTENT;
+  ctx.notes = notes || {};
+  applyPrefs(ctx.state.prefs);
+  ctx.saveSoon();
+  render();
+}
+async function boot() {
+  loadingScreen();
+  if (firebaseConfig.apiKey) {
+    try {
+      const { createFirebaseBackend: createFirebaseBackend2 } = await Promise.resolve().then(() => (init_backend_firebase(), backend_firebase_exports));
+      ctx.backend = await createFirebaseBackend2(firebaseConfig);
+    } catch (e) {
+      console.error(e);
+      gateScreen([h("h1", null, "אין חיבור"), h("p", null, "לא ניתן להתחבר לשרת. בדוק/י את החיבור לאינטרנט ונסה/י שוב."), h("button", { class: "btn", onclick: () => location.reload() }, "נסה/י שוב")]);
+      return;
+    }
+  } else {
+    ctx.backend = createLocalBackend();
+  }
+  window.addEventListener("hashchange", () => {
+    if (ctx.state) render();
+  });
+  window.addEventListener("pagehide", () => ctx.saveNow());
+  await ctx.backend.init(onAuth);
+}
+boot();
+
+</script>
+</body>
+</html>
