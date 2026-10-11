@@ -389,7 +389,7 @@ var backend_firebase_exports = {};
 __export(backend_firebase_exports, {
   createFirebaseBackend: () => createFirebaseBackend
 });
-async function createFirebaseBackend(config) {
+async function createFirebaseBackend(config, ownerEmail = "") {
   const [{ initializeApp }, A, F] = await Promise.all([
     import(`${BASE}/firebase-app.js`),
     import(`${BASE}/firebase-auth.js`),
@@ -441,6 +441,7 @@ async function createFirebaseBackend(config) {
       await A.signOut(auth);
     },
     async getAccess(u) {
+      if (ownerEmail && u.email === ownerEmail.toLowerCase()) return { role: "admin" };
       try {
         const snap = await getDoc(doc(db, "allowedEmails", u.email));
         return snap.exists() ? { role: snap.data().role || "student" } : null;
@@ -556,15 +557,16 @@ var init_backend_firebase = __esm({
 });
 
 // ../../../../../../home/claude/nlp-coach/js/config.js
-// ===== פרטי החיבור ל-Firebase: כאן מדביקים את הערכים. כל עוד apiKey ריק, האתר במצב הדגמה =====
+// ===== פרטי החיבור ל-Firebase =====
 var firebaseConfig = {
-  apiKey: "",
-  authDomain: "",
-  projectId: "",
-  storageBucket: "",
-  messagingSenderId: "",
-  appId: ""
+  apiKey: "AIzaSyBwc-dLQGn1pTRfEQFo6ddeSDG9tG2JCOU",
+  authDomain: "nlp-sm.firebaseapp.com",
+  projectId: "nlp-sm",
+  storageBucket: "nlp-sm.firebasestorage.app",
+  messagingSenderId: "573078346759",
+  appId: "1:573078346759:web:e24f56843c0c9aed7b5ea2"
 };
+var OWNER_EMAIL = "arye.minkov@gmail.com";
 var APP_NAME = "מלווה NLP";
 
 // ../../../../../../home/claude/nlp-coach/js/default-content.js
@@ -2718,7 +2720,7 @@ async function boot() {
   if (firebaseConfig.apiKey) {
     try {
       const { createFirebaseBackend: createFirebaseBackend2 } = await Promise.resolve().then(() => (init_backend_firebase(), backend_firebase_exports));
-      ctx.backend = await createFirebaseBackend2(firebaseConfig);
+      ctx.backend = await createFirebaseBackend2(firebaseConfig, OWNER_EMAIL);
     } catch (e) {
       console.error(e);
       gateScreen([h("h1", null, "אין חיבור"), h("p", null, "לא ניתן להתחבר לשרת. בדוק/י את החיבור לאינטרנט ונסה/י שוב."), h("button", { class: "btn", onclick: () => location.reload() }, "נסה/י שוב")]);
